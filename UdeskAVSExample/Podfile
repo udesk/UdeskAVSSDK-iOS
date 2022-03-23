@@ -1,0 +1,12 @@
+platform :ios, '9.0'
+use_frameworks!
+
+def all_pods
+  pod 'UdeskAVSSDK', :path => '../LocalLib'
+end
+target 'UdeskAVSExample' do
+    all_pods
+end
+pre_install do |installer|
+  Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+end

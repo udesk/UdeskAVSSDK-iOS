@@ -1,0 +1,6 @@
+framework module UdeskAVSSDK {
+  umbrella header "UdeskAVSSDK.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,38 @@
+PODS:
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - TXLiteAVSDK_TRTC (8.7.10102)
+  - UdeskAVSSDK (1.0.0):
+    - UdeskAVSSDK/Framework (= 1.0.0)
+    - UdeskAVSSDK/UIKit (= 1.0.0)
+  - UdeskAVSSDK/Framework (1.0.0)
+  - UdeskAVSSDK/UIKit (1.0.0):
+    - SDWebImage (= 5.11.1)
+    - TXLiteAVSDK_TRTC (= 8.7.10102)
+    - UdeskAVSSDK/Framework
+    - YYText (~> 1.0.7)
+  - YYText (1.0.7)
+
+DEPENDENCIES:
+  - UdeskAVSSDK (from `../LocalLib`)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
+    - TXLiteAVSDK_TRTC
+    - YYText
+
+EXTERNAL SOURCES:
+  UdeskAVSSDK:
+    :path: "../LocalLib"
+
+SPEC CHECKSUMS:
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  TXLiteAVSDK_TRTC: e78365f430926a1064e175fd8d97601559e7d3d1
+  UdeskAVSSDK: 35f912e8ff20708170e9727bdf156d065f892e2a
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+
+PODFILE CHECKSUM: 21c8c1305743dbc592892cb350a53c0e8b9a7300
+
+COCOAPODS: 1.11.2
