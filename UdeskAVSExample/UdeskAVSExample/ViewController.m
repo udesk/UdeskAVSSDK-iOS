@@ -8,7 +8,6 @@
 #import "ViewController.h"
 
 #import <UdeskAVSSDK/UdeskAVSHeader.h>
-#import <UdeskAVSSDK/UdeskAVSConnector.h>
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *dominTextField;
