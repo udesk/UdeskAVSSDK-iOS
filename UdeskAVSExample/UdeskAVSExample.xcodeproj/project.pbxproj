@@ -19,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		702573085F67FD56A780A030 /* Pods-UdeskAVSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdeskAVSExample.release.xcconfig"; path = "Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample.release.xcconfig"; sourceTree = "<group>"; };
+		84100D2027F1BB97001C4A61 /* UdeskAVSSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UdeskAVSSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		843548DD27EDAE0F007BCCAB /* UdeskAVSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdeskAVSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843548E027EDAE0F007BCCAB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		843548E127EDAE0F007BCCAB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		4912518D65B43A6E1E1754E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84100D2027F1BB97001C4A61 /* UdeskAVSSDK.framework */,
 				FE199A28074E397F9FC3A0A2 /* Pods_UdeskAVSExample.framework */,
 			);
 			name = Frameworks;
@@ -97,7 +99,6 @@
 				C9333FCBC8BFC60510FB86BD /* Pods-UdeskAVSExample.debug.xcconfig */,
 				702573085F67FD56A780A030 /* Pods-UdeskAVSExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -112,8 +113,8 @@
 				843548D927EDAE0F007BCCAB /* Sources */,
 				843548DA27EDAE0F007BCCAB /* Frameworks */,
 				843548DB27EDAE0F007BCCAB /* Resources */,
-				E3D193D891BE4BFF599C6E93 /* [CP] Embed Pods Frameworks */,
-				2855F59F12D3A02602A77A26 /* [CP] Copy Pods Resources */,
+				E9F38652BD1A8903405415F3 /* [CP] Embed Pods Frameworks */,
+				8D6281B1471E0984092E896E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,23 +171,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2855F59F12D3A02602A77A26 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		76B2048C8EB27B7D4F4E9DEC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -209,7 +193,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E3D193D891BE4BFF599C6E93 /* [CP] Embed Pods Frameworks */ = {
+		8D6281B1471E0984092E896E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9F38652BD1A8903405415F3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

@@ -7,10 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UdeskProjectHeader.h"
+#import <YYText/YYTextKeyboardManager.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@protocol YYTextKeyboardObserver;
 
 @protocol UdeskTRTCMessageListViewDelegate <NSObject>
 

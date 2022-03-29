@@ -8,24 +8,26 @@
 
 Pod::Spec.new do |s|
   s.name         = 'UdeskAVSSDK'
-  s.version      = '1.0.0'
+  s.version      = '1.0.5'
   s.license      = 'MIT'
-  s.summary      = 'lib2.'
+  s.summary      = 'lib.'
   s.description  = <<-DESC
   UdeskAVSSDK local Warehouse of po in LocalLib.
                    DESC
   s.author       = {'zhangshuangyi ' => 'zhangshuangyi@udesk.cn'}
-  s.homepage     = "{ :git => "", :tag => "#{s.version}" }"
-  s.source       = { :git => "", :tag => "#{s.version}" }
+  s.homepage     = '{ :git => "", :tag => "#{s.version}" }'
+  s.source       = { :git => '', :tag => '#{s.version}' }
   s.platform     = :ios, '9.0'
   s.requires_arc = true
   s.xcconfig     = {'OTHER_LDFLAGS' => '-ObjC', 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
+  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
+  
   s.subspec 'SDK' do |ss|
-    ss.source_files = "UdeskAVSSDK/SDK/*.h" #,'UdeskAVSSDK/UdeskAVSSDK.framework/UdeskAVSSDK'
-    ss.vendored_libraries = 'UdeskAVSSDK/SDK/libUDAVSLib.a'
-    ss.public_header_files = "UdeskAVSSDK/SDK/*.h"
+    ss.source_files = 'UdeskAVSSDK/SDK/**/*.h' #,'UdeskAVSSDK/UdeskAVSSDK.framework/UdeskAVSSDK'
+    ss.vendored_libraries = 'UdeskAVSSDK/SDK/libUdeskAVS.a'
+    ss.public_header_files = 'UdeskAVSSDK/SDK/**/*.h'
   end
-
+  
   s.static_framework = true
   s.source_files = 'UdeskAVSSDK/UIKit/*.{h,m}'
   s.public_header_files = 'UdeskAVSSDK/UIKit*.{h}'

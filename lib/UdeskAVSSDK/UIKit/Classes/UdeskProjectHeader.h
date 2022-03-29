@@ -38,7 +38,7 @@
 
 #import "UdeskAVSMacroHeader.h"
 
-#import <YYText/YYText.h>
+#import <YYText/YYTextKeyboardManager.h>
 
 #import "UdeskAVSAgentView.h"
 
