@@ -6,7 +6,8 @@
 //
 
 #import "UIView+UdeskAVS.h"
-
+#import "UAVSLineUtil.h"
+#import "UIColor+UdeskAVS.h"
 
 @implementation UIView (UdeskAVS)
 
@@ -106,7 +107,42 @@
     self.frame = frame;
 }
 
+- (void)appendBottomBorder{
+    [UAVSLineUtil addLineWithView:self type:UAVSLineTypeBottom andColor:UIColorHex(#E6E7EB)];
+}
+
+- (void)appendTopBorder{
+    [UAVSLineUtil addLineWithView:self type:UAVSLineTypeTop andColor:UIColorHex(#E6E7EB)];
+}
+
+- (void)appendLeftBorder:(CGFloat)topMargin bottomMargin:(CGFloat)bottomMargin{
+    [UAVSLineUtil addLineWithView:self type:UAVSLineTypeLeft andColor:[UIColor colorWithWhite:0 alpha:0.05]];
+}
 
 
++ (UIView *)duplicate:(UIView *)view
+{
+    NSData *tempArchive = [NSKeyedArchiver archivedDataWithRootObject:view];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
+}
+
+- (void)clipsCornerRadius:(CGFloat)radius corner:(UIRectCorner)corner {
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
+}
+
+
+- (UIViewController *)viewController {
+    for (UIView *view = self; view; view = view.superview) {
+        UIResponder *nextResponder = [view nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 
 @end

@@ -7,10 +7,9 @@
 
 #import "UdeskIndexViewController.h"
 #import "UdeskProjectHeader.h"
-#import <UdeskAVSSDK/UdeskAVSSDK.h>
 #import "UdeskRoomViewController.h"
 
-@interface UdeskIndexViewController () <UdeskAVSSDKDelegate>
+@interface UdeskIndexViewController () <UdeskAVSSDKDelegate,UdeskAVSBaseMessageDelegate>
 
 @property (nonatomic, strong) UIImageView *topBgImageView;
 @property (nonatomic, strong) UIView *bottomBgImageView;
@@ -41,6 +40,8 @@
     
     [[UdeskAVSSDKManager sharedInstance] registerDelgate:self];
     [[UdeskAVSSDKManager sharedInstance] call];
+    
+    [[UdeskAVSMessageManager sharedInstance] registerDelgate:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getHandOffNotifycation:) name:kUdeskGlobalMessageHandOff object:nil];
     
@@ -84,7 +85,8 @@
     self.navigationController.navigationBar.hidden = YES;
    
 }
-#pragma mark -
+
+#pragma mark - UdeskAVSSDKDelegate
 - (void)didGetRoomInfo:(UdeskAVSTRTCRoomInfo *)trtcInfo{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:trtcInfo forKey:@"roomInfo"];
@@ -92,6 +94,7 @@
         [params setObject:self.agentInfo forKey:@"agent"];
     }
     UdeskRoomViewController *room = [[UdeskRoomViewController alloc] initWithRoom:params];
+    [room updateAgentInfo:self.agentInfo];
     [self.navigationController pushViewController:room animated:YES];
     self.roomViewController = room;
 }
@@ -126,6 +129,7 @@
     self.agentView.hidden = NO;
     self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].waitScreenText;
     self.queueLabel.hidden = YES;
+    
 }
 
 
@@ -145,16 +149,26 @@
     }];
 }
 
-- (void)didUpdateMessageList:(NSArray *)messageList{
-    if (self.roomViewController) {
-        [self.roomViewController updateMessageList:messageList];
-    }
-}
-
 - (void)didGetError:(nonnull NSError *)error {
     //未知的严重错误
     NSLog(@"didGetError");
 }
+
+#pragma mark - UdeskAVSBaseMessageDelegate
+- (void)uavs_messageArrived:(UdeskAVSBaseMessage *)message
+{
+    if (self.roomViewController) {
+        [self.roomViewController receivedMessage:message];
+    }
+}
+
+- (void)uavs_messageDidSend:(UdeskAVSBaseMessage *)message
+{
+    if (self.roomViewController) {
+        [self.roomViewController receivedMessage:message];
+    }
+}
+
 #pragma mark - Close
 - (void)close{
     

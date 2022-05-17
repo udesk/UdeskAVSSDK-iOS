@@ -8,37 +8,35 @@
 #ifndef UdeskProjectHeader_h
 #define UdeskProjectHeader_h
 
-#import <UdeskAVSSDK/UdeskAVSSDK.h>
+//#import <UdeskAVSSDK/UdeskAVSSDK.h>
+#import "UdeskAVSSDK.h"
 
-#import "UdeskAVSUtilities.h"
+#import "UdeskAVCSUtil.h"
+#import "UdeskAVSDateUtil.h"
+
 #import "UdeskAVSBundleUtils.h"
 #import "UIView+UdeskAVS.h"
 #import "UIAlertController+UdeskAVS.h"
-#import "UIImage+Udesk.h"
+#import "UIImage+UdeskAVS.h"
 #import "UIImageView+UdeskAVS.h"
 #import "NSString+UdeskAVS.h"
+#import "UIColor+UdeskAVS.h"
+#import "NSObject+UdeskAVS.h"
 
 #import "UdeskTRTCAgentInfoView.h"
 #import "UdeskTRTCBottomView.h"
 #import "UdeskTRTCContextBaseView.h"
-#import "UdeskTRTCMessageListView.h"
 #import "UdeskTRTCRoomView.h"
 #import "UdeskTRTCTimerView.h"
 #import "UdeskTRTCToolView.h"
-#import "UdeskTRTCInputView.h"
+
 
 #import "UdeskRoomViewModel.h"
 #import "UdeskAVSHPGrowingTextView.h"
 
-#import "UdeskAVSTextLayout.h"
-#import "UdeskAVSBaseLayout.h"
-
-#import "UdeskAVSBaseTableViewCell.h"
-#import "UdeskAVSTextTableViewCell.h"
-
 #import "UdeskAVSMacroHeader.h"
-
-#import <YYText/YYTextKeyboardManager.h>
+#import "UdeskAVSEnumHeader.h"
+#import "UAVSProtocolHeader.h"
 
 #import "UdeskAVSAgentView.h"
 

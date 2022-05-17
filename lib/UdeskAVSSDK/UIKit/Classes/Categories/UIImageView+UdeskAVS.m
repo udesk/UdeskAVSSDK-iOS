@@ -23,4 +23,10 @@
 #endif
 }
 
+- (void)ud_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder{
+#if Udesk_SUPPORT_SD
+    [self sd_setImageWithURL:url placeholderImage:placeholder];
+#endif
+}
+
 @end

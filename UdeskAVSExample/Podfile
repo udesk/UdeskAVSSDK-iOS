@@ -5,7 +5,7 @@ def all_pods
 #    pod 'TXLiteAVSDK_TRTC', '~> 8.7.10102'
 #    pod 'YYText', '~> 1.0.7'
 #    pod 'SDWebImage', '~> 5.11.1'
-#    pod 'UdeskAVSSDK', :git => 'https://github.com/udesk/UdeskAVSSDK-iOS'
+#    pod 'UdeskAVSSDK', :git => 'https://github.com/udesk/UdeskAVSSDK-iOS', commit:'fb38f30'
     pod 'UdeskAVSSDK', :path => '../lib'
 end
 target 'UdeskAVSExample' do

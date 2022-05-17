@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class UdeskAVSParams;
 @class UdeskAVSTRTCRoomInfo;
 @class UdeskAVSAgentInfo;
+@class UdeskAVSInitModel;
 
 @protocol UdeskFetchMerchantDelegate <NSObject>
 
@@ -36,12 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didAgentHangup:(NSDictionary *)info;
 /**异常情况*/
 - (void)didGetError:(NSError *)error;
-/**更新消息列表*/
-- (void)didUpdateMessageList:(NSArray *)messageList;
 
 @end
 
 @interface UdeskAVSSDKManager : NSObject
+
+@property (nonatomic, strong, readonly) UdeskAVSInitModel *avsContext;
+
 
 + (instancetype)sharedInstance;
 
@@ -55,6 +57,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)call;
 
 - (void)sendText:(NSString *)text;
+
+- (void)sendMessage:(NSDictionary *)msg
+            success:(void(^)(id responseObj))success
+            failure:(void(^)(NSError * error))failure;
 
 - (void)sendBye;
 
@@ -73,6 +79,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)callProcessUrl;
 /**客户侧接通后默认摄像头配置，默认后置，前置-0/后置-1*/
 - (NSInteger)customerCameraSet;
+
+
+/**获取SDK版本*/
+- (NSString *)getSDKVersion;
 
 @end
 

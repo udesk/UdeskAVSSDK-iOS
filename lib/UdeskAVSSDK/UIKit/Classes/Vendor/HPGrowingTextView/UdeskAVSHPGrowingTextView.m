@@ -403,7 +403,10 @@
 - (BOOL)becomeFirstResponder
 {
     [super becomeFirstResponder];
-    return [self.internalTextView becomeFirstResponder];
+    if(![self.internalTextView isFirstResponder]){
+        return [self.internalTextView becomeFirstResponder];
+    }
+    return [self.internalTextView isFirstResponder];
 }
 
 -(BOOL)resignFirstResponder

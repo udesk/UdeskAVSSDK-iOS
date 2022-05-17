@@ -7,21 +7,26 @@
 
 #import "UdeskRoomViewController.h"
 #import "UdeskProjectHeader.h"
-#import <UdeskAVSSDK/UdeskAVSSDK.h>
 
-@interface UdeskRoomViewController () <UdeskTRTCMessageListViewDelegate>
+#import "UdeskAVSChatViewController.h"
+#import "VideoCallUIManager.h"
+
+@interface UdeskRoomViewController () <UAVSRoomToolBarViewDelegate,UITableViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UdeskRoomViewModel *context;
 
 @property (nonatomic, strong) UdeskTRTCRoomView *roomView;
 @property (nonatomic, strong) UdeskTRTCBottomView *bottomView;
-@property (nonatomic, strong) UdeskTRTCMessageListView <YYTextKeyboardObserver>* messageListView;
 @property (nonatomic, strong) UdeskTRTCToolView *toolView;
 @property (nonatomic, strong) UdeskTRTCAgentInfoView *agentInfoView;
 @property (nonatomic, strong) UdeskTRTCTimerView *timerView;
 
 @property (nonatomic, strong) UdeskAVSTRTCRoomInfo *roomInfo;
 @property (nonatomic, strong) UdeskAVSAgentInfo *agent;
+
+@property (nonatomic, strong) UdeskAVSChatViewController *chatViewController;
+@property (nonatomic, strong) VideoCallUIManager *uiManager;
+
 
 @end
 
@@ -42,38 +47,58 @@
     self.context = [[UdeskRoomViewModel alloc] init];
     [self setupViews];
     [self updateSettings];
-    // Do any additional setup after loading the view.
+ 
+    UDWeakSelf
+    [self.uiManager getLatestMessage:^(BOOL hasMore) {
+        [weakSelf reloadChatRoomTableView];
+        [weakSelf reloadMessageTableView];
+    }];
 }
 
-- (void)injected
+#pragma mark - 事件处理
+/**收到消息*/
+- (void)receivedMessage:(UdeskAVSBaseMessage *)message
 {
-    self.context.agentName = @"sdd";
+    UDWeakSelf;
+    [self.uiManager addMessage:message
+                      completion:^{
+        [weakSelf reloadMessageTableView];
+        [weakSelf reloadChatRoomTableView];
+    }];
 }
+
+- (void)reloadMessageTableView{
+    self.context.messageList = [self.uiManager filterMessage];
+}
+- (void)reloadChatRoomTableView{
+    [self.chatViewController reloadTableView];
+}
+
 
 - (void)setupViews{
     [self.view addSubview:self.roomView];
     [self.view addSubview:self.toolView];
     [self.view addSubview:self.bottomView];
-    [self.view addSubview:self.messageListView];
+//    [self.view addSubview:self.messageListView];
     [self.view addSubview:self.timerView];
     [self.view addSubview:self.agentInfoView];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[YYTextKeyboardManager defaultManager] addObserver:self.messageListView];
+    //[[YYTextKeyboardManager defaultManager] addObserver:self.messageListView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[YYTextKeyboardManager defaultManager] removeObserver:self.messageListView];
+    //[[YYTextKeyboardManager defaultManager] removeObserver:self.messageListView];
 }
 
 
 - (void)updateSettings{
-    //当前聊天状态
-    self.context.isChatShowing = @(1);
     
+    //当前聊天状态
     //zoomMode
     self.context.zoomMode = @(UDESK_AVS_VIDEO_MODE_VIDEO_FULLSCREEN);
     //cameraSwitch
@@ -87,105 +112,6 @@
     }
     
     [self.roomView enterRoom:self.roomInfo];
-    //
-    //[self initViews];
-}
-
-- (void)initViews{
-    {
-       
-        
-        {
-            NSMutableArray *messageList = [[NSMutableArray alloc] init];
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeCustomer;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"18:30";
-                msg.content = @"111222222你好，我啊房间卡上飞机啊斯洛伐克将阿多少；lfkja艾弗森；ldkjaflkdsajflkasfjsadlkf";
-                msg.agentAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.agentAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.content = @"222罚打扫房间打扫；fkjjkaj;lfajs";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.content = @"333";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.content = @"444";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.content = @"555";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            {
-                UdeskAVSBaseMessage *msg = [[UdeskAVSBaseMessage alloc] init];
-                msg.fromType = UdeskAVSMessageFromTypeAgent;
-                msg.messageType = UdeskAVSMessageContentTypeText;
-                msg.createAt = @"21:30";
-                msg.customerAvtarImage = [UIImage udavs_imageNamed:@"kefu"];
-                msg.customerAvtarUrl = @"https://pic1.zhimg.com/80/v2-d03aa05346fd377da12dc324d79acda3_1440w.jpg?source=1940ef5c";
-                [messageList addObject:msg];
-            }
-            
-            NSMutableArray *layoutList = [[NSMutableArray alloc] init];
-            for (UdeskAVSBaseMessage *msg in messageList) {
-                BOOL showDateTime = YES;
-                if (msg.messageType == UdeskAVSMessageContentTypeText) {
-                    UdeskAVSTextLayout *layout = [[UdeskAVSTextLayout alloc] initWithMessage:msg dateDisplay:showDateTime];
-                    [layoutList addObject:layout];
-                }
-            }
-            self.context.messageList = layoutList;
-        }
-    }
 }
 
 #pragma mark - Public
@@ -197,20 +123,8 @@
     if (self.agent.avatar.length > 0) {
         self.context.agentAvatar = [NSString stringWithFormat:@"%@", self.agent.avatar];
     }
+    self.uiManager.agent = self.agent;
 }
-
-- (void)updateMessageList:(NSArray *)messageList{
-    NSMutableArray *layoutList = [[NSMutableArray alloc] init];
-    for (UdeskAVSBaseMessage *msg in messageList) {
-        BOOL showDateTime = YES;
-        if (msg.messageType == UdeskAVSMessageContentTypeText) {
-            UdeskAVSTextLayout *layout = [[UdeskAVSTextLayout alloc] initWithMessage:msg dateDisplay:showDateTime];
-            [layoutList addObject:layout];
-        }
-    }
-    self.context.messageList = layoutList;
-}
-
 
 - (void)hangup:(NSDictionary *)info{
     [UIAlertController udeskShowAlert:@"对方已挂机" onViewController:self.navigationController completion:^{
@@ -236,18 +150,64 @@
 - (void)dealloc{
     NSLog(@"%@ dealloc", [self class]);
 }
+#pragma mark - UAVSRoomToolBarViewDelegate
 
-#pragma mark - UdeskTRTCMessageListViewDelegate
-- (void)didInputText:(NSString *)text{
-    [[UdeskAVSSDKManager sharedInstance] sendText:text];
+- (void)doToolBarAction:(UDESK_VIDEO_TOOL_ACTION_TYPE)type
+{
+    if (type == UDESK_VIDEO_TOOL_ACTION_TYPE_INFO) {
+        self.context.isChatShowing = @(YES);
+        [self.chatViewController showOnViewController:self animated:YES];
+    }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_ZOOM){
+        if (self.context.zoomMode.intValue == UDESK_AVS_VIDEO_MODE_VIDEO_SMALL) {
+            self.context.zoomMode = @(UDESK_AVS_VIDEO_MODE_VIDEO_FULLSCREEN);
+            [self.chatViewController dismissFromParentViewController];
+        }
+        else{
+            self.context.zoomMode = @(UDESK_AVS_VIDEO_MODE_VIDEO_SMALL);
+            if ([self.chatViewController parentViewController]) {
+                return;
+            }
+            [self.chatViewController showOnViewController:self animated:NO];
+        }
+    }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_MICRO){
+        self.context.mute = self.context.mute.boolValue?@(0):@(1);
+    }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_ENABLE_VIDEO){
+        self.context.stopVideo = self.context.stopVideo.boolValue?@(0):@(1);
+    }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_EXCHANGE){
+        self.context.cameraSwitch = self.context.cameraSwitch.boolValue?@(0):@(1);
+    }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_HANDOFF){
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUdeskGlobalMessageHandOff object:nil userInfo:@{}];
+    }
 }
 
-#pragma mark - YYTextKeyboardObserver
+#pragma mark - 事件
+
+- (void)roomViewMainTouch
+{
+    if (self.context.zoomMode.integerValue != UDESK_AVS_VIDEO_MODE_VIDEO_FULLSCREEN){
+        return;
+    }
+    if ([self.context.isChatShowing boolValue]) {
+        [self.chatViewController dismissFromParentViewController];
+    }
+}
 
 #pragma mark - Lazy
 - (UdeskTRTCRoomView *)roomView{
     if (!_roomView) {
         _roomView = [[UdeskTRTCRoomView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) context:self.context];
+        
+        UDWeakSelf;
+        _roomView.mainTouchBlock = ^{
+            [weakSelf roomViewMainTouch];
+        };
+       
+        NSLog(@"context=%@", self.context.isChatShowing);
     }
     return _roomView;
 }
@@ -256,23 +216,15 @@
     if (!_bottomView) {
         CGFloat h = 176 + kUdeskScreenTabBarSafeAreaHeight;
         _bottomView = [[UdeskTRTCBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight - h, kScreenWidth, h) context:self.context];
+        _bottomView.delegate = self;
     }
     return _bottomView;
-}
-
-- (UdeskTRTCMessageListView *)messageListView{
-    if (!_messageListView) {
-        CGFloat h = kScreenHeight - kUdeskScreenNavBarHeight - kScreenWidth/2.0;
-        _messageListView = [[UdeskTRTCMessageListView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, h) context:self.context];
-        _messageListView.delegate = self;
-        _messageListView.backgroundColor = [UIColor lightGrayColor];
-    }
-    return _messageListView;
 }
 
 - (UdeskTRTCToolView *)toolView{
     if (!_toolView) {
         _toolView = [[UdeskTRTCToolView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40) context:self.context];
+        _toolView.delegate = self;
         _toolView.backgroundColor = [UIColor grayColor];
     }
     return _toolView;
@@ -301,5 +253,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)chatViewControllerDidDismiss{
+    NSLog(@"_chatViewControllerDidDismiss ...");
+    self.context.isChatShowing = @(NO);
+    
+}
+- (UdeskAVSChatViewController *)chatViewController{
+    if (!_chatViewController) {
+        _chatViewController = [[UdeskAVSChatViewController alloc] initWithUIManager:self.uiManager];
+        //_chatViewController.connectInfo = _connectInfo;
+        UDWeakSelf
+        _chatViewController.dismissBlock = ^{
+            [weakSelf chatViewControllerDidDismiss];
+        };
+    }
+    return _chatViewController;;
+}
+- (VideoCallUIManager *)uiManager{
+    if (!_uiManager) {
+        _uiManager = [[VideoCallUIManager alloc] init];
+        _uiManager.roomId = @(self.roomInfo.roomId);
+        _uiManager.agent = self.agent;
+    }
+    return _uiManager;
+}
 
 @end

@@ -1,0 +1,27 @@
+
+/* Class = "UITextField"; text = "IAPTZhwOBznsWtTS"; ObjectID = "1C8-aW-cwA"; */
+"1C8-aW-cwA.text" = "IAPTZhwOBznsWtTS";
+
+/* Class = "UITextField"; text = "https://avs.t2.tryudesk.com/avs/"; ObjectID = "1qz-do-2m7"; */
+"1qz-do-2m7.text" = "https://avs.t2.tryudesk.com/avs/";
+
+/* Class = "UITextField"; text = "2730"; ObjectID = "3dR-Ga-7EA"; */
+"3dR-Ga-7EA.text" = "2730";
+
+/* Class = "UILabel"; text = "sdkAppId"; ObjectID = "Hhf-P4-ayL"; */
+"Hhf-P4-ayL.text" = "sdkAppId";
+
+/* Class = "UIButton"; normalTitle = "开始呼叫"; ObjectID = "hKn-uO-QFY"; */
+"hKn-uO-QFY.normalTitle" = "开始呼叫";
+
+/* Class = "UILabel"; text = "域名"; ObjectID = "lxX-YX-FaP"; */
+"lxX-YX-FaP.text" = "域名";
+
+/* Class = "UITextField"; text = "18"; ObjectID = "mko-rh-FQ4"; */
+"mko-rh-FQ4.text" = "18";
+
+/* Class = "UILabel"; text = "用户标识"; ObjectID = "qt8-tA-5el"; */
+"qt8-tA-5el.text" = "用户标识";
+
+/* Class = "UILabel"; text = "指定客服（可以为空）"; ObjectID = "wif-i9-P5H"; */
+"wif-i9-P5H.text" = "指定客服（可以为空）";

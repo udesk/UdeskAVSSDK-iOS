@@ -6,7 +6,7 @@
 //
 
 #import "UdeskAVSConnector.h"
-#import <UdeskAVSSDK/UdeskAVSSDK.h>
+#import "UdeskAVSSDK.h"
 #import "UdeskIndexViewController.h"
 #import "UIAlertController+UdeskAVS.h"
 #import <AssetsLibrary/AssetsLibrary.h>

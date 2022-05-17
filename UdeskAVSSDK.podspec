@@ -8,14 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name         = "UdeskAVSSDK"
-  s.version      = "1.0.5"
+  s.version      = "1.1.0"
   s.license      = "MIT"
   s.summary      = "UdeskAVSSDK SDK for iOS"
   s.homepage     = "https://github.com/udesk/UdeskAVSSDK-iOS"
   s.author       = {"zhangshuangyi " => "zhangshuangyi@udesk.cn"}
-  #s.source       = {:git => "https://github.com/udesk/UdeskSDK-iOS.git", :tag => "#{s.version}"}
+  # s.source       = {:git => "https://github.com/udesk/UdeskSDK-iOS.git", :commit => "a16fd53"}
   s.source       = {:git => "https://github.com/udesk/UdeskAVSSDK-iOS.git", :tag => "#{s.version}" }
-  # s.source       = {:git => 'https://github.com/udesk/UdeskAVSSDK-iOS.git'}
   s.platform     = :ios, "9.0"
   s.requires_arc = true
   s.xcconfig     = {"OTHER_LDFLAGS" => "-ObjC",
@@ -42,6 +41,7 @@ Pod::Spec.new do |s|
     ss.dependency "UdeskAVSSDK/SDK"
     ss.dependency "YYText", "~> 1.0.7"
     ss.dependency "SDWebImage", "~> 5.11.1"
+    ss.dependency "MJRefresh", "~> 3.7.5"
     ss.dependency "TXLiteAVSDK_TRTC", "8.7.10102"
   end
 

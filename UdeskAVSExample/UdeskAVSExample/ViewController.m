@@ -31,6 +31,7 @@
     self.agentTextField.text = agentId;
     self.codeTextField.text = [NSString stringWithFormat:@"demo%03X%03X", arc4random(), arc4random()];
     
+    NSLog(@"UdeskAVSSDK 版本：%@", [UdeskAVSSDKManager sharedInstance].getSDKVersion);
 }
 
 - (IBAction)startCall:(id)sender {

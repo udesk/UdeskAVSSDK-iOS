@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = 'UdeskAVSSDK'
-  s.version      = '1.0.5'
+  s.version      = '1.1.0'
   s.license      = 'MIT'
   s.summary      = 'lib.'
   s.description  = <<-DESC
@@ -20,10 +20,10 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '9.0'
   s.requires_arc = true
   s.xcconfig     = {'OTHER_LDFLAGS' => '-ObjC', 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
-  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
-  
+  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'i386 x86_64 armv7 arm64' }
+
   s.subspec 'SDK' do |ss|
-    ss.source_files = 'UdeskAVSSDK/SDK/**/*.h' #,'UdeskAVSSDK/UdeskAVSSDK.framework/UdeskAVSSDK'
+    ss.source_files = 'UdeskAVSSDK/SDK/**/*.h'
     ss.vendored_libraries = 'UdeskAVSSDK/SDK/libUdeskAVS.a'
     ss.public_header_files = 'UdeskAVSSDK/SDK/**/*.h'
   end
@@ -42,12 +42,12 @@ Pod::Spec.new do |s|
     ss.dependency 'UdeskAVSSDK/SDK'
     ss.dependency 'YYText', '~> 1.0.7'
     ss.dependency 'SDWebImage', '~>5.11.1'
+    ss.dependency 'MJRefresh', '~> 3.7.5'
     ss.dependency 'TXLiteAVSDK_TRTC', '8.7.10102'
+
   end
 
   
- 
-
 end
 
   

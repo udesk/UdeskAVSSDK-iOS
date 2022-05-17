@@ -14,9 +14,13 @@ FOUNDATION_EXPORT double UdeskAVSSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char UdeskAVSSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <UdeskAVSSDK/PublicHeader.h>
-
-#import <UdeskAVSSDK/UdeskAVSSDKManager.h>
-#import <UdeskAVSSDK/UdeskAVSParams.h>
-#import <UdeskAVSSDK/UdeskAVSTRTCRoomInfo.h>
-#import <UdeskAVSSDK/UdeskAVSBaseMessage.h>
-#import <UdeskAVSSDK/UdeskAVSAgentInfo.h>
+#import "UdeskAVSSDKManager.h"
+#import "UdeskAVSParams.h"
+#import "UdeskAVSTRTCRoomInfo.h"
+#import "UdeskAVSMessageManager.h"
+#import "UdeskAVSAgentInfo.h"
+//#import <UdeskAVSSDK/UdeskAVSSDKManager.h>
+//#import <UdeskAVSSDK/UdeskAVSParams.h>
+//#import <UdeskAVSSDK/UdeskAVSTRTCRoomInfo.h>
+//#import <UdeskAVSSDK/UdeskAVSBaseMessage.h>
+//#import <UdeskAVSSDK/UdeskAVSAgentInfo.h>

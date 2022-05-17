@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)ud_setImageWithURL:(nullable NSURL *)url;
 
+- (void)ud_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder;
+
 @end
 
 NS_ASSUME_NONNULL_END

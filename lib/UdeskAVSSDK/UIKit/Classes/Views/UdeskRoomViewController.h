@@ -9,8 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class UdeskAVSTRTCRoomInfo;
 @class UdeskAVSAgentInfo;
+@class UdeskAVSBaseMessage;
 
 @interface UdeskRoomViewController : UIViewController
 
@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateAgentInfo:(UdeskAVSAgentInfo *)agent;
 
-- (void)updateMessageList:(NSArray *)messageList;
+- (void)receivedMessage:(UdeskAVSBaseMessage *)message;
+
+- (void)reloadMessageTableView;
 
 - (void)hangup:(NSDictionary *)info;
 
