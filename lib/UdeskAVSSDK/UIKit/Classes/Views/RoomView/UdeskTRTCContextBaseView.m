@@ -64,6 +64,10 @@
         NSNumber *newValue = change[@"new"];
         [self mainFaceSelfChanged:newValue];
     }
+    else if ([keyPath isEqualToString:NSStringFromSelector(@selector(isViewShare))]) {
+        NSNumber *newValue = change[@"new"];
+        [self isViewShareChanged:newValue];
+    }
     NSLog(@"监听到 %@ 的 %@ 改变了 %@", [object class], keyPath, change);
     /* 输出结果：
      监听到 p1 的 age 改变了 {
@@ -109,7 +113,11 @@
 - (void)agentNameChanged:(NSString *)name{
     
 }
-
+//屏幕分享
+- (void)isViewShareChanged:(NSNumber *)isViewShare
+{
+    
+}
 
 
 /*

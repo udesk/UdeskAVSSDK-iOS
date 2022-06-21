@@ -35,6 +35,7 @@
             NSStringFromSelector(@selector(mute)),
             NSStringFromSelector(@selector(stopVideo)),
             NSStringFromSelector(@selector(isMainFaceSelf)),
+            NSStringFromSelector(@selector(isViewShare)),
             NSStringFromSelector(@selector(cameraSwitch))
         ]];
     }
@@ -176,6 +177,18 @@
     }
 }
 
+/**
+ * 11.1 媒体录制回调
+ *
+ * @param errCode 错误码 0：初始化录制成功；-1：初始化录制失败；-2: 文件后缀名有误。
+ * @param storagePath 录制文件存储路径
+ */
+- (void)onLocalRecordBegin:(NSInteger)errCode storagePath:(NSString *)storagePath
+{
+    NSLog(@"onError errCode =%ld", errCode);
+}
+
+#pragma mark - content change
 - (void)zoomModeChanged:(NSNumber *)zoomMode{
     if (zoomMode.intValue == UDESK_AVS_VIDEO_MODE_VIDEO_SMALL) {
         self.height = kScreenWidth/2.0;
@@ -217,7 +230,7 @@
     if (!_trtcCloud) {
         return;
     }
-    [_trtcCloud muteLocalVideo:stopVideo.boolValue];
+    
     if(stopVideo.boolValue){
         [_trtcCloud stopLocalPreview];
         self.localBgView.hidden = NO;
@@ -227,6 +240,9 @@
     }
     self.localBgView.hidden = !stopVideo.boolValue;
     
+    if(![self.context.isViewShare boolValue]){    
+        [_trtcCloud muteLocalVideo:stopVideo.boolValue];
+    }
 }
 
 - (void)cameraSwitchChanged:(NSNumber *)flag{
@@ -261,6 +277,40 @@
     }
     
 }
+
+- (void)isViewShareChanged:(NSNumber *)isViewShare
+{
+    if (!_trtcCloud) {
+        return;
+    }
+    
+    if (@available(iOS 13.0, *)) {
+        BOOL isShare = [isViewShare boolValue];
+        if (isShare) {
+            [_trtcCloud stopLocalPreview];
+            [_trtcCloud muteLocalVideo:NO];
+            TRTCVideoEncParam *encPara = [TRTCVideoEncParam new];
+            encPara.resMode = TRTCVideoResolutionModePortrait;
+            encPara.videoResolution = TRTCVideoResolution_1280_720;
+            encPara.videoBitrate = 1600;
+            encPara.videoFps = 10;
+            [_trtcCloud startScreenCaptureInApp:TRTCVideoStreamTypeBig encParam:encPara];
+        }else{
+            
+            [_trtcCloud stopScreenCapture];
+            if(self.context.stopVideo.boolValue){
+                [_trtcCloud stopLocalPreview];
+                [_trtcCloud muteLocalVideo:YES];
+            }else{
+                [_trtcCloud startLocalPreview:!self.context.cameraSwitch.boolValue view:self.localView];
+            }
+            
+        }
+    }
+    
+}
+
+
 - (void)tapMainViewAction:(id)tap
 {
     if (self.mainTouchBlock) {
@@ -279,12 +329,5 @@
     //NSLog(@"222222=%@", self.context.isChatShowing);
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

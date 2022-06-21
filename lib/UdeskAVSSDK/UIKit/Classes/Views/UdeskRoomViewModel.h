@@ -38,7 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 //客服头像
 @property (nonatomic, strong) NSString *agentAvatar;
 
-
+//开启屏幕分析，1开启 0/nil 关闭
+@property (nonatomic, strong) NSNumber *isViewShare;
 
 @end
 

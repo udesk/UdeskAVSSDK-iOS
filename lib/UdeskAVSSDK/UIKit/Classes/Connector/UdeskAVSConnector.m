@@ -16,6 +16,8 @@
 @property (nonatomic, weak) UIViewController *udeskPresentedViewController;
 @property (nonatomic, copy) UdeskAVSCompletion resultCompletion;
 
+@property (nonatomic, strong, readwrite)UdeskAVSConfig *sdkConfig;
+
 @end
 
 @implementation UdeskAVSConnector
@@ -31,14 +33,14 @@
 }
 
 - (void)presentUdeskOnViewController:(UIViewController *)controller
-                              params:(UdeskAVSParams *)params
-                          completion:(UdeskAVSCompletion)completion{
-    //检查摄像头权限
-    
+                           sdkConfig:(UdeskAVSConfig *)config
+                          completion:(UdeskAVSCompletion)completion
+{
     self.udeskPresentedViewController = controller;
     self.resultCompletion = completion;
+    self.sdkConfig = config;
     UdeskAVSSDKManager *instance = [UdeskAVSSDKManager sharedInstance];
-    [instance fetchMerchantInfo:params delegate:self];
+    [instance fetchMerchantInfo:config.sdkParam delegate:self];
 }
 
 #pragma mark - Private
@@ -56,11 +58,31 @@
     UdeskIndexViewController *indexViewContrller = [[UdeskIndexViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:indexViewContrller];
     nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.baseUavsViewController = nav;
     [self.udeskPresentedViewController presentViewController:nav animated:YES completion:^{
         if (self.resultCompletion) {
             self.resultCompletion(nil);
         }
     }];
+}
+
+- (void)screenShowOnViewController:(UIViewController *)controller
+{
+    self.udeskPresentedViewController = controller;
+    if (!self.udeskPresentedViewController ||
+        ![self.udeskPresentedViewController isKindOfClass:[UIViewController class]]) {
+        return;
+    }
+    
+    if (!self.holdBaseViewController ||
+        ![self.holdBaseViewController isKindOfClass:[UIViewController class]]) {
+        return;
+    }
+    
+    [self.udeskPresentedViewController presentViewController:self.holdBaseViewController animated:YES completion:^{
+        self.holdBaseViewController = nil;
+    }];
+    
 }
 
 - (void)didGetMerchantInfoError:(NSError *)error{
@@ -73,5 +95,26 @@
     }];
 }
 
+- (void)dismissWithLeveling
+{
+    self.holdBaseViewController = self.baseUavsViewController;
+    
+    if (self.sdkConfig.willMinViewBlock) {
+        BOOL gone = self.sdkConfig.willMinViewBlock(self.baseUavsViewController.childViewControllers.firstObject);
+        if (!gone) {
+            return;
+        }
+    }
+    
+    [self.baseUavsViewController dismissViewControllerAnimated:NO completion:^{
+        
+    }];
+    
+}
+
+- (BOOL)isLeveling
+{
+    return self.baseUavsViewController;
+}
 
 @end

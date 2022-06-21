@@ -91,14 +91,17 @@ params.sdkAppId = @"sdkAppId";
 params.code = @"userCode";
 params.agentId = "agentId";
 
+UdeskAVSConfig *config = [UdeskAVSConfig defaultConfig];
+config.sdkParam = params;
 //初始化SDK 并发起呼叫
-[[UdeskAVSConnector sharedInstance] presentUdeskOnViewController:self params:params completion:^(NSError * _Nullable error) {
+[[UdeskAVSConnector sharedInstance] presentUdeskOnViewController:self sdkConfig:config completion:^(NSError * _Nullable error) {
     if (error) {
         NSLog(@"error = %@", error);
     }
     else{
         NSLog(@"start call....");
     }
+    
 }];
 
 ```
@@ -116,7 +119,28 @@ params.agentId = "agentId";
 - domain格式为 https://xxx.xxx.xxx/xx  完整url 
 - sdkAppId可以在 管理后台  ->  管理中心  ->  渠道管理 ->  视频移动SDK，新增App即可获得
 - agentId 对应 管理后台  ->  管理中心  ->  员工管理 ->  ID 列
+- **客户信息、客服信息、业务记录**相关参数和描述详见，demo代码和**UdeskAVSParams.h**属性列表
 
+### 通话保持（最小化）
+
+- 配置 UdeskAVSConfig 中 isMiniView 为YES 即可在通话界面显示【最小化】按钮，点击后视频界面退出。通话依然保持。
+```
+    UdeskAVSConfig *config = [UdeskAVSConfig defaultConfig];
+    config.isMiniView = YES;
+```
+
+⚠️ 1、配置显示最小化按钮后，建议实现 config.willMinViewBlock 处理通话界面进入后台后如何显示通话进行中的标志。Demo提供了一个浮窗效果，仅供参考。
+
+### 屏幕分享
+
+- 配置 UdeskAVSConfig 中 isScreenShare 为YES 即可使在通话界面显示【视频分享】按钮
+```
+    UdeskAVSConfig *config = [UdeskAVSConfig defaultConfig];
+    config.isScreenShare = YES;
+```
+⚠️ 1、注意每次app启动后使用分享功能，均需要分享授权。
+⚠️ 2、屏幕分享功能需用真机测试
+⚠️ 3、建议【屏幕分享】功能与【通话保持（最小化）】同时使用，以实现正常的分享业务。
 
 # 三、视频通话配置
 
@@ -136,6 +160,16 @@ Udesk视频通话参数配置在登录管理后台更改，详见；
 # 五、更新记录
 
 #### 更新记录：
+
+**2022/6/21 -- v1.2.0**
+**版本更新功能：**
+1.支持屏幕分享
+2.支持最小化
+3.用户和业务规则参数配置
+
+**2022/5/17 -- v1.1.0**
+**版本更新功能：**
+1.支持图片和历史消息
 
 **2022/3/29 -- v1.0.5**
 **版本更新功能：**

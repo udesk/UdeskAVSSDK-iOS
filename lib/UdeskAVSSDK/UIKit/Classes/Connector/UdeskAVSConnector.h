@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UdeskAVSConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,9 +18,20 @@ typedef void(^UdeskAVSCompletion)(NSError * _Nullable error);
 
 + (instancetype)sharedInstance;
 
+@property (nonatomic, strong, readonly)UdeskAVSConfig *sdkConfig;
+
+@property (nonatomic, assign)BOOL isLeveling;
+
+@property (nonatomic, weak) UINavigationController * baseUavsViewController;
+@property (nonatomic, strong)UIViewController * _Nullable holdBaseViewController;
+
 - (void)presentUdeskOnViewController:(UIViewController *)controller
-                              params:(UdeskAVSParams *)params
-                          completion:(UdeskAVSCompletion)completion;
+                           sdkConfig:(UdeskAVSConfig *)config
+                          completion:(UdeskAVSCompletion _Nullable)completion;
+
+- (void)screenShowOnViewController:(UIViewController *)controller;
+
+- (void)dismissWithLeveling;
 
 @end
 

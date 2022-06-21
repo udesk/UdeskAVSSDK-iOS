@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class UdeskAVSParams;
+@class UdeskAVSCustomModel;
 @class UdeskAVSTRTCRoomInfo;
 @class UdeskAVSAgentInfo;
 @class UdeskAVSInitModel;

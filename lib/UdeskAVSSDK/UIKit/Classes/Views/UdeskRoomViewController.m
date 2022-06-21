@@ -10,6 +10,7 @@
 
 #import "UdeskAVSChatViewController.h"
 #import "VideoCallUIManager.h"
+#import "UdeskAVSConnector.h"
 
 @interface UdeskRoomViewController () <UAVSRoomToolBarViewDelegate,UITableViewDelegate,UIGestureRecognizerDelegate>
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UdeskAVSChatViewController *chatViewController;
 @property (nonatomic, strong) VideoCallUIManager *uiManager;
 
+@property (nonatomic, strong)UIButton *minViewButton;
 
 @end
 
@@ -79,9 +81,17 @@
     [self.view addSubview:self.roomView];
     [self.view addSubview:self.toolView];
     [self.view addSubview:self.bottomView];
-//    [self.view addSubview:self.messageListView];
     [self.view addSubview:self.timerView];
     [self.view addSubview:self.agentInfoView];
+    
+    UdeskAVSConfig *config = [UdeskAVSConnector sharedInstance].sdkConfig;
+    if (config.isMiniView) {
+        self.minViewButton = [[UIButton alloc] initWithFrame:CGRectMake(16, self.agentInfoView.bottom + 8, 32, 32)];
+        self.minViewButton.backgroundColor = [UIColor clearColor];
+        [self.minViewButton setBackgroundImage:[UIImage udavs_imageNamed:@"minView"] forState:UIControlStateNormal];
+        [self.minViewButton addTarget:self action:@selector(minViewButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:self.minViewButton];
+    }
 }
 
 
@@ -160,10 +170,12 @@
     }
     else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_ZOOM){
         if (self.context.zoomMode.intValue == UDESK_AVS_VIDEO_MODE_VIDEO_SMALL) {
+            self.minViewButton.hidden = NO;
             self.context.zoomMode = @(UDESK_AVS_VIDEO_MODE_VIDEO_FULLSCREEN);
             [self.chatViewController dismissFromParentViewController];
         }
         else{
+            self.minViewButton.hidden = YES;
             self.context.zoomMode = @(UDESK_AVS_VIDEO_MODE_VIDEO_SMALL);
             if ([self.chatViewController parentViewController]) {
                 return;
@@ -183,6 +195,10 @@
     else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_HANDOFF){
         [[NSNotificationCenter defaultCenter] postNotificationName:kUdeskGlobalMessageHandOff object:nil userInfo:@{}];
     }
+    else if(type == UDESK_VIDEO_TOOL_ACTION_TYPE_SHARE_VIEW){
+        self.context.isViewShare = self.context.isViewShare.boolValue?@(0):@(1);
+    }
+    
 }
 
 #pragma mark - 事件
@@ -196,6 +212,12 @@
         [self.chatViewController dismissFromParentViewController];
     }
 }
+
+- (void)minViewButtonClick
+{
+    [[UdeskAVSConnector sharedInstance] dismissWithLeveling];
+}
+
 
 #pragma mark - Lazy
 - (UdeskTRTCRoomView *)roomView{
@@ -244,15 +266,6 @@
     return _agentInfoView;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (void)chatViewControllerDidDismiss{
     NSLog(@"_chatViewControllerDidDismiss ...");
     self.context.isChatShowing = @(NO);

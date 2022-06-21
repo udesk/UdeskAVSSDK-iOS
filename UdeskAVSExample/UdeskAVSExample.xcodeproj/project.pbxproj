@@ -14,6 +14,13 @@
 		843548ED27EDAE11007BCCAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843548EC27EDAE11007BCCAB /* Assets.xcassets */; };
 		843548F027EDAE11007BCCAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843548EE27EDAE11007BCCAB /* LaunchScreen.storyboard */; };
 		843548F327EDAE11007BCCAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 843548F227EDAE11007BCCAB /* main.m */; };
+		84678C022861B33000897977 /* icon_bubble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84678BF52861B33000897977 /* icon_bubble@3x.png */; };
+		84678C032861B33000897977 /* UAVSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF62861B33000897977 /* UAVSWindow.m */; };
+		84678C042861B33000897977 /* UAVSBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF72861B33000897977 /* UAVSBubble.m */; };
+		84678C052861B33000897977 /* UAVSFloatWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF82861B33000897977 /* UAVSFloatWindowManager.m */; };
+		84678C062861B33000897977 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BFC2861B33000897977 /* CommonViewController.m */; };
+		84678C0C2861CA9200897977 /* ParamSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84678C092861CA9100897977 /* ParamSetViewController.xib */; };
+		84678C0D2861CA9200897977 /* ParamSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678C0B2861CA9200897977 /* ParamSetViewController.m */; };
 		C618057DAFA9467F2C53B777 /* Pods_UdeskAVSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE199A28074E397F9FC3A0A2 /* Pods_UdeskAVSExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +39,18 @@
 		843548EF27EDAE11007BCCAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843548F127EDAE11007BCCAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		843548F227EDAE11007BCCAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84678BF42861B33000897977 /* UAVSFloatWindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAVSFloatWindowManager.h; sourceTree = "<group>"; };
+		84678BF52861B33000897977 /* icon_bubble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bubble@3x.png"; sourceTree = "<group>"; };
+		84678BF62861B33000897977 /* UAVSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAVSWindow.m; sourceTree = "<group>"; };
+		84678BF72861B33000897977 /* UAVSBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAVSBubble.m; sourceTree = "<group>"; };
+		84678BF82861B33000897977 /* UAVSFloatWindowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAVSFloatWindowManager.m; sourceTree = "<group>"; };
+		84678BF92861B33000897977 /* UAVSBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAVSBubble.h; sourceTree = "<group>"; };
+		84678BFA2861B33000897977 /* UAVSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAVSWindow.h; sourceTree = "<group>"; };
+		84678BFC2861B33000897977 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		84678BFD2861B33000897977 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		84678C092861CA9100897977 /* ParamSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParamSetViewController.xib; sourceTree = "<group>"; };
+		84678C0A2861CA9200897977 /* ParamSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamSetViewController.h; sourceTree = "<group>"; };
+		84678C0B2861CA9200897977 /* ParamSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamSetViewController.m; sourceTree = "<group>"; };
 		C9333FCBC8BFC60510FB86BD /* Pods-UdeskAVSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdeskAVSExample.debug.xcconfig"; path = "Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample.debug.xcconfig"; sourceTree = "<group>"; };
 		FE199A28074E397F9FC3A0A2 /* Pods_UdeskAVSExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UdeskAVSExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +97,7 @@
 		843548DF27EDAE0F007BCCAB /* UdeskAVSExample */ = {
 			isa = PBXGroup;
 			children = (
+				84678BF22861B33000897977 /* DemoView */,
 				843548E027EDAE0F007BCCAB /* AppDelegate.h */,
 				843548E127EDAE0F007BCCAB /* AppDelegate.m */,
 				843548E327EDAE0F007BCCAB /* SceneDelegate.h */,
@@ -91,6 +111,49 @@
 				843548F227EDAE11007BCCAB /* main.m */,
 			);
 			path = UdeskAVSExample;
+			sourceTree = "<group>";
+		};
+		84678BF22861B33000897977 /* DemoView */ = {
+			isa = PBXGroup;
+			children = (
+				84678BF32861B33000897977 /* FloatWindow */,
+				84678BFB2861B33000897977 /* WebView */,
+				84678BFE2861B33000897977 /* ParamSet */,
+			);
+			path = DemoView;
+			sourceTree = "<group>";
+		};
+		84678BF32861B33000897977 /* FloatWindow */ = {
+			isa = PBXGroup;
+			children = (
+				84678BF42861B33000897977 /* UAVSFloatWindowManager.h */,
+				84678BF52861B33000897977 /* icon_bubble@3x.png */,
+				84678BF62861B33000897977 /* UAVSWindow.m */,
+				84678BF72861B33000897977 /* UAVSBubble.m */,
+				84678BF82861B33000897977 /* UAVSFloatWindowManager.m */,
+				84678BF92861B33000897977 /* UAVSBubble.h */,
+				84678BFA2861B33000897977 /* UAVSWindow.h */,
+			);
+			path = FloatWindow;
+			sourceTree = "<group>";
+		};
+		84678BFB2861B33000897977 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				84678BFC2861B33000897977 /* CommonViewController.m */,
+				84678BFD2861B33000897977 /* CommonViewController.h */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		84678BFE2861B33000897977 /* ParamSet */ = {
+			isa = PBXGroup;
+			children = (
+				84678C0A2861CA9200897977 /* ParamSetViewController.h */,
+				84678C0B2861CA9200897977 /* ParamSetViewController.m */,
+				84678C092861CA9100897977 /* ParamSetViewController.xib */,
+			);
+			path = ParamSet;
 			sourceTree = "<group>";
 		};
 		93A511FA4E392536034BD0E0 /* Pods */ = {
@@ -163,6 +226,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84678C022861B33000897977 /* icon_bubble@3x.png in Resources */,
+				84678C0C2861CA9200897977 /* ParamSetViewController.xib in Resources */,
 				843548F027EDAE11007BCCAB /* LaunchScreen.storyboard in Resources */,
 				843548ED27EDAE11007BCCAB /* Assets.xcassets in Resources */,
 				843548EB27EDAE0F007BCCAB /* Main.storyboard in Resources */,
@@ -235,7 +300,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84678C0D2861CA9200897977 /* ParamSetViewController.m in Sources */,
 				843548E827EDAE0F007BCCAB /* ViewController.m in Sources */,
+				84678C062861B33000897977 /* CommonViewController.m in Sources */,
+				84678C032861B33000897977 /* UAVSWindow.m in Sources */,
+				84678C042861B33000897977 /* UAVSBubble.m in Sources */,
+				84678C052861B33000897977 /* UAVSFloatWindowManager.m in Sources */,
 				843548E227EDAE0F007BCCAB /* AppDelegate.m in Sources */,
 				843548F327EDAE11007BCCAB /* main.m in Sources */,
 				843548E527EDAE0F007BCCAB /* SceneDelegate.m in Sources */,
@@ -390,17 +460,26 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UdeskAVSExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Udesk视频";
+				INFOPLIST_KEY_NSCameraUsageDescription = "请允许我使用摄像头";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许我使用麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Udesk需要为您添加图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk需要为您添加图片";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample.UdeskAVSExample;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -419,17 +498,26 @@
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UdeskAVSExample/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Udesk视频";
+				INFOPLIST_KEY_NSCameraUsageDescription = "请允许我使用摄像头";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许我使用麦克风";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Udesk需要为您添加图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk需要为您添加图片";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample.UdeskAVSExample;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

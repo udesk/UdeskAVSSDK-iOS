@@ -7,6 +7,8 @@ def all_pods
 #    pod 'SDWebImage', '~> 5.11.1'
 #    pod 'UdeskAVSSDK', :git => 'https://github.com/udesk/UdeskAVSSDK-iOS', commit:'fb38f30'
     pod 'UdeskAVSSDK', :path => '../lib'
+    #demo
+    pod 'IQKeyboardManager'
 end
 target 'UdeskAVSExample' do
     all_pods

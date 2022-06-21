@@ -1,26 +1,29 @@
 PODS:
+  - IQKeyboardManager (6.5.10)
   - MJRefresh (3.7.5)
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
   - TXLiteAVSDK_TRTC (8.7.10102)
-  - UdeskAVSSDK (1.1.0):
-    - UdeskAVSSDK/AVSKit (= 1.1.0)
-    - UdeskAVSSDK/SDK (= 1.1.0)
-  - UdeskAVSSDK/AVSKit (1.1.0):
+  - UdeskAVSSDK (1.2.0):
+    - UdeskAVSSDK/AVSKit (= 1.2.0)
+    - UdeskAVSSDK/SDK (= 1.2.0)
+  - UdeskAVSSDK/AVSKit (1.2.0):
     - MJRefresh (~> 3.7.5)
     - SDWebImage (~> 5.11.1)
     - TXLiteAVSDK_TRTC (= 8.7.10102)
     - UdeskAVSSDK/SDK
     - YYText (~> 1.0.7)
-  - UdeskAVSSDK/SDK (1.1.0)
+  - UdeskAVSSDK/SDK (1.2.0)
   - YYText (1.0.7)
 
 DEPENDENCIES:
+  - IQKeyboardManager
   - UdeskAVSSDK (from `../lib`)
 
 SPEC REPOS:
   trunk:
+    - IQKeyboardManager
     - MJRefresh
     - SDWebImage
     - TXLiteAVSDK_TRTC
@@ -31,12 +34,13 @@ EXTERNAL SOURCES:
     :path: "../lib"
 
 SPEC CHECKSUMS:
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   TXLiteAVSDK_TRTC: e78365f430926a1064e175fd8d97601559e7d3d1
-  UdeskAVSSDK: ccc4bc487e8fc83531ffcf35668f18b80aafd36c
+  UdeskAVSSDK: 2c1430742af528439c161e3de1d8045f0465f1dd
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: d6a4ee0db1beb4928dfabd285db1ba67f3b590fc
+PODFILE CHECKSUM: 447f2a74cf274ae41ebd5f7c5a3f59a9eb548caf
 
 COCOAPODS: 1.11.3

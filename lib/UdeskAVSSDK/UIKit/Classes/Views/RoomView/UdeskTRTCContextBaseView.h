@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 //客服信息
 - (void)agentAvatarChanged:(NSString *)avatar;
 - (void)agentNameChanged:(NSString *)name;
+//屏幕分享
+- (void)isViewShareChanged:(NSNumber *)isViewShare;
 
 @end
 

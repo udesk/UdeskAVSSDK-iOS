@@ -20,7 +20,7 @@
 #import "UdeskAVSEnumHeader.h"
 #import "UAVSProtocolHeader.h"
 #import "UdeskRoomViewModel.h"
-
+#import "UdeskAVSConnector.h"
 
 @interface UdeskTRTCBottomView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) NSArray *messageList;
 
+@property (nonatomic, strong) UIButton *shareViewButton;
+
 @end
 
 @implementation UdeskTRTCBottomView
@@ -46,6 +48,7 @@
                              NSStringFromSelector(@selector(messageList)),
                              NSStringFromSelector(@selector(mute)),
                              NSStringFromSelector(@selector(stopVideo)),
+                             NSStringFromSelector(@selector(isViewShare)),
                              NSStringFromSelector(@selector(cameraSwitch))
         ]];
     }
@@ -79,6 +82,19 @@
     
     sView.frame = bgView.bounds;
     [self.toolsBgView addSubview:sView];
+    
+    if (@available(iOS 13.0, *)) { // ios 13+ 才支持屏幕分享
+        UdeskAVSConfig *config = [UdeskAVSConnector sharedInstance].sdkConfig;
+        if (config.isScreenShare) {
+            self.shareViewButton = [[UIButton alloc] initWithFrame:CGRectMake(self.toolsBgView.right - 42, self.toolsBgView.top - 50, 40, 40)];
+            self.shareViewButton.backgroundColor = [UIColor clearColor];
+            self.shareViewButton.tag = UDESK_VIDEO_TOOL_ACTION_TYPE_SHARE_VIEW;
+            [self.shareViewButton setBackgroundImage:[UIImage udavs_imageNamed:@"shareView"] forState:UIControlStateNormal];
+            [self.shareViewButton setBackgroundImage:[UIImage udavs_imageNamed:@"closeShare"] forState:UIControlStateSelected];
+            [self.shareViewButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [self addSubview:self.shareViewButton];
+        }
+    }
     
 }
 
@@ -150,13 +166,13 @@
         self.messageList = [tmpArray subarrayWithRange:NSMakeRange(tmpArray.count - 4, 4)];
     }
     else{
-//        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
-//        //比4个少几个
-//        NSInteger number = 4 - tmpArray.count;
-//        for (int i = 0; i<number; i++) {
-//            [array addObject:[NSNull null]];
-//        }
-//        [array addObjectsFromArray:tmpArray];
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+        //比4个少几个
+        NSInteger number = 4 - tmpArray.count;
+        for (int i = 0; i<number; i++) {
+            [array addObject:[NSNull null]];
+        }
+        [array addObjectsFromArray:tmpArray];
         self.messageList = tmpArray;
     }
 
@@ -174,6 +190,11 @@
 
 - (void)cameraSwitchChanged:(NSNumber *)cameraSwitch{
     self.cameraSwitchButton.selected = cameraSwitch.boolValue;
+}
+
+- (void)isViewShareChanged:(NSNumber *)isViewShare
+{
+    self.shareViewButton.selected = [isViewShare boolValue];
 }
 
 #pragma mark UITableViewDelegate/UITableViewDataSource
