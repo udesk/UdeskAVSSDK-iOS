@@ -74,6 +74,11 @@
         return;
     }
     
+    
+    if(![self baseCheck]){
+        return;
+    }
+    
 
     NSString *domin = self.dominTextField.text;// @"https://avs.t2.tryudesk.com/avs/";
     NSString *agentId = self.agentTextField.text;
@@ -81,10 +86,10 @@
     NSString *sdkAppid = self.sdkAppIdTextField.text;
 
     UdeskAVSParams *params = [[UdeskAVSParams alloc] init];
-    params.udeskDomin = domin;
-    params.sdkAppId = sdkAppid;
-    params.customCode = code;
-    params.agentId = agentId;
+    params.udeskDomin = domin ?: @"";
+    params.sdkAppId = sdkAppid ?: @"";
+    params.customCode = code ?: @"";
+    params.agentId = agentId ?: @"";
     
     UdeskAVSConfig *config = [UdeskAVSConfig defaultConfig];
     config.sdkParam = params;
@@ -116,6 +121,10 @@
 
 
 - (IBAction)paramSetting:(id)sender {
+    
+    if(![self baseCheck]){
+        return;
+    }
     
     ParamSetViewController*setVC = [ParamSetViewController new];
     
@@ -161,6 +170,29 @@
     [self presentViewController:nvc animated:YES completion:nil];
     
 }
+
+- (BOOL)baseCheck
+{
+
+    NSString *domin = self.dominTextField.text;// @"https://avs.t2.tryudesk.com/avs/";
+    NSString *agentId = self.agentTextField.text;
+    NSString *code = self.codeTextField.text;
+    NSString *sdkAppid = self.sdkAppIdTextField.text;
+
+    if(!domin.length || !code.length || !sdkAppid.length){
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请填写必要信息"
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:conform];
+        [self presentViewController:alert animated:YES completion:nil];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

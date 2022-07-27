@@ -1,0 +1,63 @@
+
+/* Class = "UITextField"; placeholder = "telephones: 客户电话，逗号分隔"; ObjectID = "1tW-gz-1gT"; */
+"1tW-gz-1gT.placeholder" = "telephones: Customer phone, comma separated";
+
+/* Class = "UILabel"; text = "设置客户信息"; ObjectID = "5QP-qI-Y5r"; */
+"5QP-qI-Y5r.text" = "Set customer information";
+
+/* Class = "UITextField"; placeholder = "customFields:  自定义字段，key1:value1;key2:value2"; ObjectID = "5jo-Sf-1f2"; */
+"5jo-Sf-1f2.placeholder" = "customFields:  Custom fields，key1:value1;key2:value2";
+
+/* Class = "UITextField"; placeholder = "nickname: 客户名称"; ObjectID = "6g0-D5-yui"; */
+"6g0-D5-yui.placeholder" = "nickname: Customer name";
+
+/* Class = "UITextField"; placeholder = "noteInfo_title: 主题"; ObjectID = "J4N-WA-jP2"; */
+"J4N-WA-jP2.placeholder" = "noteInfo_title: theme";
+
+/* Class = "UITextField"; placeholder = "level: 客户等级(0|1)"; ObjectID = "Jrw-PG-v2F"; */
+"Jrw-PG-v2F.placeholder" = "level: Customer rating(0|1)";
+
+/* Class = "UITextField"; placeholder = "email: 客户邮箱"; ObjectID = "XgK-AY-kwg"; */
+"XgK-AY-kwg.placeholder" = "email: Customer email";
+
+/* Class = "UILabel"; text = "支持视频分享"; ObjectID = "Y4W-2K-ExB"; */
+"Y4W-2K-ExB.text" = "Support video sharing";
+
+/* Class = "UITextField"; placeholder = "noteInfo_customFields: 字段，key1:value1;key2:value2"; ObjectID = "c5q-rP-HuW"; */
+"c5q-rP-HuW.placeholder" = "noteInfo_customFields: field，key1:value1;key2:value2";
+
+/* Class = "UITextField"; placeholder = "customChannel:自定义渠道（根据此配置路由）"; ObjectID = "cgg-cw-TVE"; */
+"cgg-cw-TVE.placeholder" = "customChannel:Custom channel (route according to this configuration)";
+
+/* Class = "UITextField"; placeholder = "tags: 客户标签，逗号分隔"; ObjectID = "d9x-vQ-vka"; */
+"d9x-vQ-vka.placeholder" = "tags: Customer label, comma separated";
+
+/* Class = "UITextField"; placeholder = "avatar: 客户头像url"; ObjectID = "hRk-FZ-R44"; */
+"hRk-FZ-R44.placeholder" = "avatar: Customer avatar URL";
+
+/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "idQ-DX-9tQ"; */
+"idQ-DX-9tQ.normalTitle" = "Cancel";
+
+/* Class = "UITextField"; placeholder = "agentGroupId:客服组id"; ObjectID = "m5L-Q5-yNj"; */
+"m5L-Q5-yNj.placeholder" = "agentGroupId: Customer service group ID";
+
+/* Class = "UILabel"; text = "设置业务记录"; ObjectID = "mlW-kQ-P0Q"; */
+"mlW-kQ-P0Q.text" = "Set business record";
+
+/* Class = "UIButton"; normalTitle = "清空"; ObjectID = "n7F-d3-xuy"; */
+"n7F-d3-xuy.normalTitle" = "Empty";
+
+/* Class = "UITextField"; placeholder = "use_description: 客户描述"; ObjectID = "oua-Py-bQA"; */
+"oua-Py-bQA.placeholder" = "use_description: Customer description";
+
+/* Class = "UIButton"; normalTitle = "填充"; ObjectID = "ovW-Ok-2XQ"; */
+"ovW-Ok-2XQ.normalTitle" = "Fill";
+
+/* Class = "UILabel"; text = "支持最小化"; ObjectID = "weL-W7-URz"; */
+"weL-W7-URz.text" = "Support minimization";
+
+/* Class = "UILabel"; text = "设置客服信息"; ObjectID = "xVO-ia-07b"; */
+"xVO-ia-07b.text" = "Set customer service information";
+
+/* Class = "UIButton"; normalTitle = "呼叫"; ObjectID = "yGR-vI-sQK"; */
+"yGR-vI-sQK.normalTitle" = "Call";

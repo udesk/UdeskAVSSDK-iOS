@@ -1,9 +1,21 @@
 
+/* Class = "UITextField"; placeholder = "请输入url"; ObjectID = "0gs-OZ-YCF"; */
+"0gs-OZ-YCF.placeholder" = "Please enter url";
+
+/* Class = "UITextField"; placeholder = "输入appid"; ObjectID = "1C8-aW-cwA"; */
+"1C8-aW-cwA.placeholder" = "Please enter appid";
+
 /* Class = "UITextField"; text = "IAPTZhwOBznsWtTS"; ObjectID = "1C8-aW-cwA"; */
 "1C8-aW-cwA.text" = "IAPTZhwOBznsWtTS";
 
+/* Class = "UITextField"; placeholder = "输入域名"; ObjectID = "1qz-do-2m7"; */
+"1qz-do-2m7.placeholder" = "Please enter domain name";
+
 /* Class = "UITextField"; text = "https://avs.t2.tryudesk.com/avs/"; ObjectID = "1qz-do-2m7"; */
 "1qz-do-2m7.text" = "https://avs.t2.tryudesk.com/avs/";
+
+/* Class = "UITextField"; placeholder = "输入唯一用户标识"; ObjectID = "3dR-Ga-7EA"; */
+"3dR-Ga-7EA.placeholder" = "Please enter User ID";
 
 /* Class = "UITextField"; text = "2730"; ObjectID = "3dR-Ga-7EA"; */
 "3dR-Ga-7EA.text" = "2730";
@@ -11,17 +23,26 @@
 /* Class = "UILabel"; text = "sdkAppId"; ObjectID = "Hhf-P4-ayL"; */
 "Hhf-P4-ayL.text" = "sdkAppId";
 
+/* Class = "UIButton"; normalTitle = "打开H5页面"; ObjectID = "LZq-h3-eF5"; */
+"LZq-h3-eF5.normalTitle" = "Open H5 page";
+
+/* Class = "UIButton"; normalTitle = "参数配置"; ObjectID = "fW8-XM-bDe"; */
+"fW8-XM-bDe.normalTitle" = "Parameters setting";
+
 /* Class = "UIButton"; normalTitle = "开始呼叫"; ObjectID = "hKn-uO-QFY"; */
-"hKn-uO-QFY.normalTitle" = "开始呼叫";
+"hKn-uO-QFY.normalTitle" = "Start call";
 
 /* Class = "UILabel"; text = "域名"; ObjectID = "lxX-YX-FaP"; */
-"lxX-YX-FaP.text" = "域名";
+"lxX-YX-FaP.text" = "domain name";
+
+/* Class = "UITextField"; placeholder = "输入客服id"; ObjectID = "mko-rh-FQ4"; */
+"mko-rh-FQ4.placeholder" = "Please enter agent id";
 
 /* Class = "UITextField"; text = "18"; ObjectID = "mko-rh-FQ4"; */
 "mko-rh-FQ4.text" = "18";
 
-/* Class = "UILabel"; text = "用户标识(唯一区分用户)"; ObjectID = "qt8-tA-5el"; */
-"qt8-tA-5el.text" = "用户标识(唯一区分用户)";
+/* Class = "UILabel"; text = "用户标识(唯一)"; ObjectID = "qt8-tA-5el"; */
+"qt8-tA-5el.text" = "User ID";
 
 /* Class = "UILabel"; text = "指定客服（可以为空）"; ObjectID = "wif-i9-P5H"; */
-"wif-i9-P5H.text" = "指定客服（可以为空）";
+"wif-i9-P5H.text" = "Specify customer service (can be blank)";

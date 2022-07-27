@@ -1,15 +1,27 @@
 
-/* Class = "UITextField"; text = "IAPTZhwOBznsWtTS"; ObjectID = "1C8-aW-cwA"; */
-"1C8-aW-cwA.text" = "IAPTZhwOBznsWtTS";
+/* Class = "UITextField"; placeholder = "请输入url"; ObjectID = "0gs-OZ-YCF"; */
+"0gs-OZ-YCF.placeholder" = "请输入url";
 
-/* Class = "UITextField"; text = "https://avs.t2.tryudesk.com/avs/"; ObjectID = "1qz-do-2m7"; */
-"1qz-do-2m7.text" = "https://avs.t2.tryudesk.com/avs/";
+/* Class = "UITextField"; text = "122"; ObjectID = "0gs-OZ-YCF"; */
+"0gs-OZ-YCF.text" = "122";
 
-/* Class = "UITextField"; text = "2730"; ObjectID = "3dR-Ga-7EA"; */
-"3dR-Ga-7EA.text" = "2730";
+/* Class = "UITextField"; placeholder = "输入appid"; ObjectID = "1C8-aW-cwA"; */
+"1C8-aW-cwA.placeholder" = "输入appid";
+
+/* Class = "UITextField"; placeholder = "输入域名"; ObjectID = "1qz-do-2m7"; */
+"1qz-do-2m7.placeholder" = "输入域名";
+
+/* Class = "UITextField"; placeholder = "输入唯一用户标识"; ObjectID = "3dR-Ga-7EA"; */
+"3dR-Ga-7EA.placeholder" = "输入唯一用户标识";
 
 /* Class = "UILabel"; text = "sdkAppId"; ObjectID = "Hhf-P4-ayL"; */
 "Hhf-P4-ayL.text" = "sdkAppId";
+
+/* Class = "UIButton"; normalTitle = "打开H5页面"; ObjectID = "LZq-h3-eF5"; */
+"LZq-h3-eF5.normalTitle" = "打开H5页面";
+
+/* Class = "UIButton"; normalTitle = "参数配置"; ObjectID = "fW8-XM-bDe"; */
+"fW8-XM-bDe.normalTitle" = "参数配置";
 
 /* Class = "UIButton"; normalTitle = "开始呼叫"; ObjectID = "hKn-uO-QFY"; */
 "hKn-uO-QFY.normalTitle" = "开始呼叫";
@@ -17,11 +29,11 @@
 /* Class = "UILabel"; text = "域名"; ObjectID = "lxX-YX-FaP"; */
 "lxX-YX-FaP.text" = "域名";
 
-/* Class = "UITextField"; text = "18"; ObjectID = "mko-rh-FQ4"; */
-"mko-rh-FQ4.text" = "18";
+/* Class = "UITextField"; placeholder = "输入客服id"; ObjectID = "mko-rh-FQ4"; */
+"mko-rh-FQ4.placeholder" = "输入客服id";
 
-/* Class = "UILabel"; text = "用户标识"; ObjectID = "qt8-tA-5el"; */
-"qt8-tA-5el.text" = "用户标识";
+/* Class = "UILabel"; text = "用户标识(唯一)"; ObjectID = "qt8-tA-5el"; */
+"qt8-tA-5el.text" = "用户标识(唯一)";
 
 /* Class = "UILabel"; text = "指定客服（可以为空）"; ObjectID = "wif-i9-P5H"; */
 "wif-i9-P5H.text" = "指定客服（可以为空）";

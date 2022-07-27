@@ -14,12 +14,12 @@
 		843548ED27EDAE11007BCCAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843548EC27EDAE11007BCCAB /* Assets.xcassets */; };
 		843548F027EDAE11007BCCAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843548EE27EDAE11007BCCAB /* LaunchScreen.storyboard */; };
 		843548F327EDAE11007BCCAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 843548F227EDAE11007BCCAB /* main.m */; };
+		844873E6286AA52E009C07B8 /* ParamSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844873E8286AA52E009C07B8 /* ParamSetViewController.xib */; };
 		84678C022861B33000897977 /* icon_bubble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84678BF52861B33000897977 /* icon_bubble@3x.png */; };
 		84678C032861B33000897977 /* UAVSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF62861B33000897977 /* UAVSWindow.m */; };
 		84678C042861B33000897977 /* UAVSBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF72861B33000897977 /* UAVSBubble.m */; };
 		84678C052861B33000897977 /* UAVSFloatWindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BF82861B33000897977 /* UAVSFloatWindowManager.m */; };
 		84678C062861B33000897977 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678BFC2861B33000897977 /* CommonViewController.m */; };
-		84678C0C2861CA9200897977 /* ParamSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84678C092861CA9100897977 /* ParamSetViewController.xib */; };
 		84678C0D2861CA9200897977 /* ParamSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84678C0B2861CA9200897977 /* ParamSetViewController.m */; };
 		C618057DAFA9467F2C53B777 /* Pods_UdeskAVSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE199A28074E397F9FC3A0A2 /* Pods_UdeskAVSExample.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +39,10 @@
 		843548EF27EDAE11007BCCAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843548F127EDAE11007BCCAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		843548F227EDAE11007BCCAB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		844873E5286AA477009C07B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		844873E7286AA52E009C07B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ParamSetViewController.xib; sourceTree = "<group>"; };
+		844873EA286AA531009C07B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ParamSetViewController.strings; sourceTree = "<group>"; };
+		84634FB828759A50009BD3CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		84678BF42861B33000897977 /* UAVSFloatWindowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAVSFloatWindowManager.h; sourceTree = "<group>"; };
 		84678BF52861B33000897977 /* icon_bubble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_bubble@3x.png"; sourceTree = "<group>"; };
 		84678BF62861B33000897977 /* UAVSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAVSWindow.m; sourceTree = "<group>"; };
@@ -48,7 +52,6 @@
 		84678BFA2861B33000897977 /* UAVSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAVSWindow.h; sourceTree = "<group>"; };
 		84678BFC2861B33000897977 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
 		84678BFD2861B33000897977 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
-		84678C092861CA9100897977 /* ParamSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParamSetViewController.xib; sourceTree = "<group>"; };
 		84678C0A2861CA9200897977 /* ParamSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamSetViewController.h; sourceTree = "<group>"; };
 		84678C0B2861CA9200897977 /* ParamSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamSetViewController.m; sourceTree = "<group>"; };
 		C9333FCBC8BFC60510FB86BD /* Pods-UdeskAVSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UdeskAVSExample.debug.xcconfig"; path = "Target Support Files/Pods-UdeskAVSExample/Pods-UdeskAVSExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,7 +154,7 @@
 			children = (
 				84678C0A2861CA9200897977 /* ParamSetViewController.h */,
 				84678C0B2861CA9200897977 /* ParamSetViewController.m */,
-				84678C092861CA9100897977 /* ParamSetViewController.xib */,
+				844873E8286AA52E009C07B8 /* ParamSetViewController.xib */,
 			);
 			path = ParamSet;
 			sourceTree = "<group>";
@@ -227,7 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84678C022861B33000897977 /* icon_bubble@3x.png in Resources */,
-				84678C0C2861CA9200897977 /* ParamSetViewController.xib in Resources */,
+				844873E6286AA52E009C07B8 /* ParamSetViewController.xib in Resources */,
 				843548F027EDAE11007BCCAB /* LaunchScreen.storyboard in Resources */,
 				843548ED27EDAE11007BCCAB /* Assets.xcassets in Resources */,
 				843548EB27EDAE0F007BCCAB /* Main.storyboard in Resources */,
@@ -319,6 +322,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				843548EA27EDAE0F007BCCAB /* Base */,
+				844873E5286AA477009C07B8 /* en */,
+				84634FB828759A50009BD3CD /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -329,6 +334,15 @@
 				843548EF27EDAE11007BCCAB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		844873E8286AA52E009C07B8 /* ParamSetViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				844873E7286AA52E009C07B8 /* Base */,
+				844873EA286AA531009C07B8 /* en */,
+			);
+			name = ParamSetViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -454,17 +468,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DVNW3ZM7G9;
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UdeskAVSExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Udesk视频";
-				INFOPLIST_KEY_NSCameraUsageDescription = "请允许我使用摄像头";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许我使用麦克风";
+				INFOPLIST_KEY_NSCameraUsageDescription = "请允许Udesk视频 使用相机,以便于了解服务捕捉视频画面";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许Udesk视频 使用麦克风,以方便我们支持您的语言通话";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Udesk需要为您添加图片";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk需要为您添加图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk视频 上传图片、扫码或保存图片都需要访问您的相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -481,6 +499,7 @@
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -492,17 +511,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = DVNW3ZM7G9;
 				ENABLE_BITCODE = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UdeskAVSExample/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Udesk视频";
-				INFOPLIST_KEY_NSCameraUsageDescription = "请允许我使用摄像头";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许我使用麦克风";
+				INFOPLIST_KEY_NSCameraUsageDescription = "请允许Udesk视频 使用相机,以便于了解服务捕捉视频画面";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "请允许Udesk视频 使用定位,以便于我们获取您的位置";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "请允许Udesk视频 使用麦克风,以方便我们支持您的语言通话";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Udesk需要为您添加图片";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk需要为您添加图片";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Udesk视频 上传图片、扫码或保存图片都需要访问您的相册";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -519,6 +542,7 @@
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.udesk.UdeskAVSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
