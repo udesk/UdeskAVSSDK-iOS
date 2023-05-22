@@ -27,7 +27,7 @@
  <tr><td>"icon@2x.png/"  </td><td>1     </td></tr>
  </table>
  */
-static CGFloat _UdeskNSStringPathScale(NSString *string) {
+static CGFloat _UavsNSStringPathScale(NSString *string) {
     if (string.length == 0 || [string hasSuffix:@"/"]) return 1;
     NSString *name = string.stringByDeletingPathExtension;
     __block CGFloat scale = 1;
@@ -66,7 +66,7 @@ static CGFloat _UdeskNSStringPathScale(NSString *string) {
     
     NSString *firstPath = paths[0];
     NSData *firstData = [NSData dataWithContentsOfFile:firstPath];
-    CGFloat scale = _UdeskNSStringPathScale(firstPath);
+    CGFloat scale = _UavsNSStringPathScale(firstPath);
     UIImage *firstCG = [[[UIImage alloc] initWithData:firstData] yy_imageByDecoded];
     self = [self initWithCGImage:firstCG.CGImage scale:scale orientation:UIImageOrientationUp];
     if (!self) return nil;
@@ -129,7 +129,7 @@ static CGFloat _UdeskNSStringPathScale(NSString *string) {
     if (_imagePaths) {
         if (index >= _imagePaths.count) return nil;
         NSString *path = _imagePaths[index];
-        CGFloat scale = _UdeskNSStringPathScale(path);
+        CGFloat scale = _UavsNSStringPathScale(path);
         NSData *data = [NSData dataWithContentsOfFile:path];
         return [[UIImage imageWithData:data scale:scale] yy_imageByDecoded];
     } else if (_imageDatas) {

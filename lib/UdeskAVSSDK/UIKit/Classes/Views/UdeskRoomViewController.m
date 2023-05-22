@@ -11,6 +11,7 @@
 #import "UdeskAVSChatViewController.h"
 #import "VideoCallUIManager.h"
 #import "UdeskAVSConnector.h"
+#import "UdeskAVSBundleUtils.h"
 
 @interface UdeskRoomViewController () <UAVSRoomToolBarViewDelegate,UITableViewDelegate,UIGestureRecognizerDelegate>
 
@@ -136,25 +137,8 @@
     self.uiManager.agent = self.agent;
 }
 
-- (void)hangup:(NSDictionary *)info{
-    [UIAlertController udeskShowAlert:@"对方已挂机" onViewController:self.navigationController completion:^{
-        [self close];
-    }];
-}
-
-- (void)close{
-    [UdeskAVSSDKManager destoryInstance];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 - (void)sendBye{
     [[UdeskAVSSDKManager sharedInstance] sendBye];
-}
-
-- (void)exitRoom{
-    
 }
 
 - (void)dealloc{
@@ -285,10 +269,17 @@
 - (VideoCallUIManager *)uiManager{
     if (!_uiManager) {
         _uiManager = [[VideoCallUIManager alloc] init];
-        _uiManager.roomId = @(self.roomInfo.roomId);
         _uiManager.agent = self.agent;
     }
     return _uiManager;
+}
+
+- (NSString *)channelId
+{
+    if (self.roomInfo && self.roomInfo.channelId.length) {
+        return self.roomInfo.channelId;
+    }
+    return nil;
 }
 
 @end

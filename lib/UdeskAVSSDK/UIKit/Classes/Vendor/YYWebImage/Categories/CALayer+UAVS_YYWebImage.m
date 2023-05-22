@@ -15,8 +15,8 @@
 #import <objc/runtime.h>
 
 // Dummy class for category
-@interface Udesk_CALayer_YYWebImage : NSObject @end
-@implementation Udesk_CALayer_YYWebImage @end
+@interface UAVS_CALayer_YYWebImage : NSObject @end
+@implementation UAVS_CALayer_YYWebImage @end
 
 
 static int UAVS_YYWebImageSetterKey;

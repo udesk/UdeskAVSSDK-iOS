@@ -7,6 +7,7 @@
 
 #import "UdeskTRTCTimerView.h"
 #import "UdeskProjectHeader.h"
+#import "UdeskAVSBundleUtils.h"
 
 @interface UdeskTRTCTimerView ()
 
@@ -40,7 +41,7 @@
 
 - (void)setupViews{
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height - 44, kScreenWidth, 44)];
-    label.text = @"跟客服专员聊天中";
+    label.text = getUDAVSLocalizedString(@"uavs_tip_talkWithAgent");
     label.font = [UIFont boldSystemFontOfSize:17];
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];

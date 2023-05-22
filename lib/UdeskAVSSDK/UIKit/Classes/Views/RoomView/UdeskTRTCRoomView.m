@@ -7,6 +7,7 @@
 
 #import "UdeskTRTCRoomView.h"
 #import <TXLiteAVSDK_TRTC/TRTCCloud.h>
+#import "UdeskProjectHeader.h"
 
 @interface UdeskTRTCRoomView () <TRTCCloudDelegate>
 

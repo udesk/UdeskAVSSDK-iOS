@@ -11,22 +11,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ChatBaseLayout;
+@class UAVSChatBaseLayout;
 @class UdeskAVSBaseMessage;
 @class UdeskAVSAgentInfo;
 
 @interface VideoCallUIManager : NSObject
 
-@property (nonatomic, strong) NSNumber *roomId;
+//@property (nonatomic, strong) NSNumber *roomId;
 
 @property (nonatomic, strong) UdeskAVSAgentInfo *agent;
 
 
-@property (nonatomic, strong) NSMutableArray <ChatBaseLayout *> *showMessageList;
+@property (nonatomic, strong) NSMutableArray <UAVSChatBaseLayout *> *showMessageList;
 //这个数组用来保存保存历史消息
-@property (nonatomic, strong) NSMutableArray <ChatBaseLayout *> *historyMessageList;
+@property (nonatomic, strong) NSMutableArray <UAVSChatBaseLayout *> *historyMessageList;
 //这个数组用来保存正在聊天时的消息
-@property (nonatomic, strong) NSMutableArray <ChatBaseLayout *> *currentMessageList;
+@property (nonatomic, strong) NSMutableArray <UAVSChatBaseLayout *> *currentMessageList;
 
 
 - (void)addMessage:(UdeskAVSBaseMessage *)message completion:(void(^)(void))completion;

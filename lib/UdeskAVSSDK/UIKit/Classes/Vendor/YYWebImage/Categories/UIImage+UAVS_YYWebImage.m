@@ -15,13 +15,13 @@
 #import <objc/runtime.h>
 
 // Dummy class for category
-@interface Udesk_UIImage_YYWebImage : NSObject @end
-@implementation Udesk_UIImage_YYWebImage @end
+@interface Uavs_UIImage_YYWebImage : NSObject @end
+@implementation Uavs_UIImage_YYWebImage @end
 
 
 
 /// Convert degrees to radians.
-static inline CGFloat _UdeskDegreesToRadians(CGFloat degrees) {
+static inline CGFloat _UavsDegreesToRadians(CGFloat degrees) {
     return degrees * M_PI / 180;
 }
 
@@ -35,7 +35,7 @@ static inline CGFloat _UdeskDegreesToRadians(CGFloat degrees) {
  @return A resized rect for the given content mode.
  @discussion UIViewContentModeRedraw is same as UIViewContentModeScaleToFill.
  */
-static CGRect _UdeskYYCGRectFitWithContentMode(CGRect rect, CGSize size, UIViewContentMode mode) {
+static CGRect _UavsYYCGRectFitWithContentMode(CGRect rect, CGSize size, UIViewContentMode mode) {
     rect = CGRectStandardize(rect);
     size.width = size.width < 0 ? -size.width : size.width;
     size.height = size.height < 0 ? -size.height : size.height;
@@ -274,7 +274,7 @@ static NSTimeInterval _uavs_yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourc
 }
 
 - (void)uavs_yy_drawInRect:(CGRect)rect withContentMode:(UIViewContentMode)contentMode clipsToBounds:(BOOL)clips{
-    CGRect drawRect = _UdeskYYCGRectFitWithContentMode(rect, self.size, contentMode);
+    CGRect drawRect = _UavsYYCGRectFitWithContentMode(rect, self.size, contentMode);
     if (drawRect.size.width == 0 || drawRect.size.height == 0) return;
     if (clips) {
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -467,11 +467,11 @@ static NSTimeInterval _uavs_yy_CGImageSourceGetGIFFrameDelayAtIndex(CGImageSourc
 }
 
 - (UIImage *)uavs_yy_imageByRotateLeft90 {
-    return [self uavs_yy_imageByRotate:_UdeskDegreesToRadians(90) fitSize:YES];
+    return [self uavs_yy_imageByRotate:_UavsDegreesToRadians(90) fitSize:YES];
 }
 
 - (UIImage *)uavs_yy_imageByRotateRight90 {
-    return [self uavs_yy_imageByRotate:_UdeskDegreesToRadians(-90) fitSize:YES];
+    return [self uavs_yy_imageByRotate:_UavsDegreesToRadians(-90) fitSize:YES];
 }
 
 - (UIImage *)uavs_yy_imageByRotate180 {

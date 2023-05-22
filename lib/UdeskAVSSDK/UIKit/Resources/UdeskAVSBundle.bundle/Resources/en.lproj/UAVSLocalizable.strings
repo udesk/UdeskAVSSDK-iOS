@@ -1,0 +1,62 @@
+/*
+  UdeskLocalizable.strings
+  UdeskSDK
+
+  Created by Udesk on 16/9/2.
+  Copyright © 2016年 Udesk. All rights reserved.
+*/
+
+//common
+"uavs_common_sure" = "Confirm";
+"uavs_common_makeSure" = "Confirm";
+"uavs_common_cancel" = "Cancel";
+"uavs_common_send" = "Cend";
+"uavs_common_copy" = "Copy";
+"uavs_common_revoke" = "Withdraw";
+
+//view name
+"uavs_button_image" = "Image"; //图片按钮标题
+"uavs_title_chat" = "Chat";   //聊天列表title
+
+//im
+"uavs_today" = "today";
+"uavs_saveImg_failed" = "Failed";
+"uavs_saveImg_success" = "Success";
+
+"uavs_msg_type_IMG" = "[image]";                    // 图片消息显示为文字
+"udesk_msg_revoke" = "withdrawn";                   // 消息状态
+"udesk_msg_sendOffline" = "Sent offline";
+"uavs_placeHolder_inputMsg" = "Enter message";      // 输入框占位内容
+
+//tip
+"uavs_error_GetMerchantInfo" = "Failed to get merchant information";
+"uavs_tip_talkWithAgent" = "Chatting with customer service";
+"uavs_tip_revoke_timeOut" = "The message has been sent for more than two minutes and cannot be withdrawn";
+"uavs_tip_startCalling" = "Initiating a call...";
+"uavs_tip_queryClose" = "End the current call?";
+"uavs_tip_agentIsBusy" = "Customer service is currently busy, please try again later";
+"uavs_tip_queueUp" = "You are currently ranked number 1, please be patient...";         //排队等待提示语，数字不要翻译
+"uavs_tip_defaultWaitAnswer" = "Waiting for customer service, please be patient...";    //默认等待客服接听提示语
+"uavs_tip_defaultQueueUp" = "Waiting in line, please be patient... ";                  //默认排队页面提示语
+"uavs_tip_agentBye" = "The other party has hung up";                              //挂断提示
+
+
+//log 日志
+"uavs_log_imgZipFaile" = "UdeskAVSSDK: Image compression failed";
+"uavs_log_listenModelChange" = "UdeskAVSSDK: Changes detected";
+"uavs_log_imgZipFaile" = "UdeskAVSSDK: Image compression failed";
+
+
+//满意度
+"udesk_service_survey" = "Satisfaction Rating";
+"udesk_submit_survey" = "Submit Feedback";
+"udesk_survey_satisfied" = "YES";
+"udesk_survey_unsatisfactory" = "NO";
+"udesk_survey_placeholder" = "You can fill in the comments";
+"udesk_survey_tips" = "Please comment on the current service, thank you! ~";
+"udesk_survey_remark_required" = "Remarks are required";
+"udesk_survey_remark_max_num" = "Text length is out of range";
+"udesk_survey_has_event" = "Survey done";
+"udesk_top_view_thanks_evaluation" = "Thanks for comment.";
+"udesk_top_view_failure" = "Failed!";
+"udesk_has_survey" = "Thank you, you have already done! ";

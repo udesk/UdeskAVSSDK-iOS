@@ -1,0 +1,63 @@
+/* 
+  UdeskLocalizable.strings
+  UdeskSDK
+
+  Created by Udesk on 16/9/2.
+  Copyright © 2016年 Udesk. All rights reserved.
+*/
+
+//common
+"uavs_common_sure" = "确认";
+"uavs_common_makeSure" = "确定";
+"uavs_common_cancel" = "取消";
+"uavs_common_send" = "发送";
+"uavs_common_copy" = "复制";
+"uavs_common_revoke" = "撤回";
+
+//view name
+"uavs_button_image" = "图片"; //图片按钮标题
+"uavs_title_chat" = "聊天";   //聊天列表title
+
+//im
+"uavs_today" = "今天";
+"uavs_saveImg_failed" = "保存失败";
+"uavs_saveImg_success" = "保存成功";
+
+"uavs_msg_type_IMG" = "[图片]";                // 图片消息显示为文字
+"udesk_msg_revoke" = "已撤回";                 // 消息状态
+"udesk_msg_sendOffline" = "离线发送";
+"uavs_placeHolder_inputMsg" = "输入消息";      // 输入框占位内容
+
+//tip
+"uavs_error_GetMerchantInfo" = "获取商户信息失败";
+"uavs_tip_talkWithAgent" = "跟客服专员聊天中";
+"uavs_tip_revoke_timeOut" = "消息发出已经超出2分钟，无法撤回";
+"uavs_tip_startCalling" = "正在发起呼叫...";
+"uavs_tip_queryClose" = "是否结束当前通话？";
+"uavs_tip_agentIsBusy" = "目前坐席繁忙,请您稍后重试";
+"uavs_tip_queueUp" = "您当前排在第1位,请您耐心等待...";              //排队等待提示语，数字不要翻译
+"uavs_tip_defaultWaitAnswer" = "正在等待客服接听，请您耐心等待...";  //默认等待客服接听提示语
+"uavs_tip_defaultQueueUp" = "正在排队，请您耐心等待...";            //默认排队页面提示语
+"uavs_tip_agentBye" = "客服已挂机";                              //挂断提示
+
+
+//log 日志
+"uavs_log_imgZipFaile" = "UdeskAVSSDK：图片压缩失败";
+"uavs_log_listenModelChange" = "UdeskAVSSDK：监听到改变";
+"uavs_log_imgZipFaile" = "UdeskAVSSDK：图片压缩失败";
+
+
+//满意度
+"udesk_service_survey" = "服务评价";
+"udesk_submit_survey" = "提交评价";
+"udesk_survey_satisfied" = "是";
+"udesk_survey_unsatisfactory" = "否";
+"udesk_survey_placeholder" = "您可填写评价备注";
+"udesk_survey_tips" = "请您对当前服务做个评价，谢谢~";
+"udesk_survey_remark_required" = "评价备注为必填项";
+"udesk_survey_remark_max_num" = "内容超出最大长度";
+"udesk_survey_has_event" = "满意度已评价";
+"udesk_top_view_thanks_evaluation" = "感谢评价！";
+"udesk_top_view_failure" = "评价失败了！";
+"udesk_has_survey" = "谢谢，您已对本次服务做出过评价了！";
+

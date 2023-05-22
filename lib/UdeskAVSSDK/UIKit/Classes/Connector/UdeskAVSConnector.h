@@ -33,6 +33,8 @@ typedef void(^UdeskAVSCompletion)(NSError * _Nullable error);
 
 - (void)dismissWithLeveling;
 
+- (void)closedViewRoom:(NSString *)roomId;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,7 @@
 //
 
 #import "UdeskAVSBundleUtils.h"
+#import "UAVSLanguageConfig.h"
 
 @implementation UdeskAVSBundleUtils
 
@@ -21,6 +22,12 @@
     UIImage *image = [UIImage imageNamed:imageName inBundle:resourcesBundle compatibleWithTraitCollection:nil];;
  
     return image;
+}
+
+//多语言
+NSString *getUDAVSLocalizedString(NSString *key){
+    
+    return [[UAVSLanguageConfig sharedConfig] getStringForKey:key withTable:@"UAVSLocalizable"];
 }
 
 

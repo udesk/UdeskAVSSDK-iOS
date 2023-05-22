@@ -7,6 +7,7 @@
 //
 
 #import "UdeskAVSImageUtil.h"
+#import "UdeskAVSBundleUtils.h"
 
 @implementation UdeskAVSImageUtil
 
@@ -229,7 +230,7 @@
     
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     if(newImage == nil) {
-        NSLog(@"UdeskSDK：图片压缩失败");
+        NSLog(@"%@",getUDAVSLocalizedString(@"uavs_log_imgZipFaile"));
         return image;
     }
     

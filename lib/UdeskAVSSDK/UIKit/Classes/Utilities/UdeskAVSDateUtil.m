@@ -8,6 +8,7 @@
 
 #import "UdeskAVSDateUtil.h"
 #import "NSDate+UdeskAVS.h"
+#import "UdeskAVSBundleUtils.h"
 
 @interface UdeskAVSDateUtil()
 
@@ -59,7 +60,7 @@
     NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:today];
     
     if (dateComponents.year == todayComponents.year && dateComponents.month == todayComponents.month && dateComponents.day == todayComponents.day) {
-        dateText = @"今天";
+        dateText = getUDAVSLocalizedString(@"uavs_today");
     } else {
         dateText = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     }

@@ -8,6 +8,8 @@
 #import "UdeskIndexViewController.h"
 #import "UdeskProjectHeader.h"
 #import "UdeskRoomViewController.h"
+#import "UdeskAVSConfig.h"
+#import "UdeskAVSConnector.h"
 
 @interface UdeskIndexViewController () <UdeskAVSSDKDelegate,UdeskAVSBaseMessageDelegate>
 
@@ -54,13 +56,13 @@
     self.bottomBgImageView.frame = CGRectMake(0, kScreenHeight-h, w, h);
     
     self.tipLabel.frame = CGRectMake(16, 0, kScreenWidth - 80, 56);
-    self.queueLabel.frame = CGRectMake(0, 84, kScreenWidth, 24);
+    self.queueLabel.frame = CGRectMake(16, 84, kScreenWidth - 32, 42);
     self.stopButton.frame = CGRectMake(kScreenWidth - 65, 0, 65, 56);
     self.agentView.frame = CGRectMake(16, 72, kScreenWidth - 32, 50);
 }
 
 - (void)initState{
-    self.tipLabel.text = @"正在发起呼叫...";
+    self.tipLabel.text = getUDAVSLocalizedString(@"uavs_tip_startCalling");
     self.queueLabel.hidden = YES;
     self.agentView.hidden = NO;
     if ([UdeskAVSSDKManager sharedInstance].callProcessUrl.length) {
@@ -71,7 +73,7 @@
 #pragma mark -
 - (void)getHandOffNotifycation:(NSNotification *)notify{
     NSLog(@"getHandOffNotifycation");
-    self.alertController = [UIAlertController udeskShowSimpleAlert:@"是否结束当前通话？" onViewController:self.navigationController completion:^(int value) {
+    self.alertController = [UIAlertController udeskShowSimpleAlert:getUDAVSLocalizedString(@"uavs_tip_queryClose") onViewController:self.navigationController completion:^(int value) {
         if (value == 0) {
             [self.roomViewController sendBye];
             [self close];
@@ -102,8 +104,8 @@
 - (void)didGetAgentBusy:(NSDictionary *)trtcInfo{
     [UdeskAVSSDKManager destoryInstance];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"目前坐席繁忙,请您稍后重试" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:getUDAVSLocalizedString(@"uavs_tip_agentIsBusy") message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *conform = [UIAlertAction actionWithTitle:getUDAVSLocalizedString(@"uavs_common_makeSure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self dismissViewControllerAnimated:YES completion:nil];
         }];
     [alert addAction:conform];
@@ -114,7 +116,7 @@
 
 - (void)didWaitAnswer:(NSDictionary *)info
 {
-    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].waitScreenText;
+    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].waitScreenText ?: [UdeskAVSConfig currentConfig].defaultWaitAnswerText;
     self.queueLabel.hidden = YES;
 }
 
@@ -127,24 +129,26 @@
     
     [self.agentView updateAgentInfo:agent];
     self.agentView.hidden = NO;
-    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].waitScreenText;
+    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].waitScreenText ?: [UdeskAVSConfig currentConfig].defaultWaitAnswerText;
     self.queueLabel.hidden = YES;
     
 }
 
 
 - (void)didUpdateQueueNumber:(NSInteger)queueNumber {
-    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].queueTipsText;
+    self.tipLabel.text = [UdeskAVSSDKManager sharedInstance].queueTipsText ?: [UdeskAVSConfig currentConfig].defaultQueueTipsText;
     //更新当前排队号
     NSLog(@"didUpdateQueueNumber");
     self.agentView.hidden = YES;
     self.queueLabel.hidden = NO;
-    self.queueLabel.text = [NSString stringWithFormat:@"您当前排在第%ld位,请您耐心等待...", queueNumber];
+    NSString *tip = getUDAVSLocalizedString(@"uavs_tip_queueUp");
+    self.queueLabel.text = [tip stringByReplacingOccurrencesOfString:@"1" withString:@(queueNumber).stringValue];
+    
 }
 
 - (void)didAgentHangup:(nonnull NSDictionary *)info {
     //客服挂机
-    [UIAlertController udeskShowAlert:@"客服已挂机" onViewController:self.navigationController completion:^{
+    [UIAlertController udeskShowAlert:getUDAVSLocalizedString(@"uavs_tip_agentBye") onViewController:self.navigationController completion:^{
         [self close];
     }];
 }
@@ -174,7 +178,7 @@
     
     [UdeskAVSSDKManager destoryInstance];
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        [[UdeskAVSConnector sharedInstance] closedViewRoom:self.roomViewController.channelId];
     }];
 }
 #pragma mark - Private
@@ -210,7 +214,7 @@
     if (!_stopButton) {
         _stopButton = [[UIButton alloc] initWithFrame:CGRectZero];
         [_stopButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [_stopButton setTitle:@"取消" forState:UIControlStateNormal];
+        [_stopButton setTitle:getUDAVSLocalizedString(@"uavs_common_cancel") forState:UIControlStateNormal];
         [_stopButton addTarget:self action:@selector(stopButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -229,7 +233,9 @@
 - (UILabel *)queueLabel{
     if (!_queueLabel) {
         _queueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _queueLabel.textAlignment = NSTextAlignmentCenter;
+        _queueLabel.textAlignment = NSTextAlignmentLeft;
+        _queueLabel.numberOfLines = 0;
+        
     }
     return _queueLabel;
 }

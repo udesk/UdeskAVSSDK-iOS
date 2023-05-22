@@ -632,12 +632,12 @@ static uint8_t *uavs_yy_png_copy_frame_data_at_index(const uint8_t *data,
 #pragma mark - Helper
 
 /// Returns byte-aligned size.
-static inline size_t UdeskYYImageByteAlign(size_t size, size_t alignment) {
+static inline size_t UavsYYImageByteAlign(size_t size, size_t alignment) {
     return ((size + (alignment - 1)) / alignment) * alignment;
 }
 
 /// Convert degree to radians
-static inline CGFloat UdeskYYImageDegreesToRadians(CGFloat degrees) {
+static inline CGFloat UavsYYImageDegreesToRadians(CGFloat degrees) {
     return degrees * M_PI / 180;
 }
 
@@ -675,7 +675,7 @@ BOOL UAVS_YYCGColorSpaceIsDeviceGray(CGColorSpaceRef space) {
  void *data = malloc(size);
  CGDataProviderRef provider = CGDataProviderCreateWithData(data, data, size, YYCGDataProviderReleaseDataCallback);
  */
-static void UdeskYYCGDataProviderReleaseDataCallback(void *info, const void *data, size_t size) {
+static void UavsYYCGDataProviderReleaseDataCallback(void *info, const void *data, size_t size) {
     if (info) free(info);
 }
 
@@ -692,7 +692,7 @@ static void UdeskYYCGDataProviderReleaseDataCallback(void *info, const void *dat
  @warning This method support iOS7.0 and later. If call it on iOS6, it just returns NO.
  CG_AVAILABLE_STARTING(__MAC_10_9, __IPHONE_7_0)
  */
-static BOOL UdeskYYCGImageDecodeToBitmapBufferWithAnyFormat(CGImageRef srcImage, vImage_Buffer *dest, vImage_CGImageFormat *destFormat) {
+static BOOL UavsYYCGImageDecodeToBitmapBufferWithAnyFormat(CGImageRef srcImage, vImage_Buffer *dest, vImage_CGImageFormat *destFormat) {
     if (!srcImage || (((long)vImageConvert_AnyToAny) + 1 == 1) || !destFormat || !dest) return NO;
     size_t width = CGImageGetWidth(srcImage);
     size_t height = CGImageGetHeight(srcImage);
@@ -751,7 +751,7 @@ fail:
  
  @return Whether succeed.
  */
-static BOOL UdeskYYCGImageDecodeToBitmapBufferWith32BitFormat(CGImageRef srcImage, vImage_Buffer *dest, CGBitmapInfo bitmapInfo) {
+static BOOL UavsYYCGImageDecodeToBitmapBufferWith32BitFormat(CGImageRef srcImage, vImage_Buffer *dest, CGBitmapInfo bitmapInfo) {
     if (!srcImage || !dest) return NO;
     size_t width = CGImageGetWidth(srcImage);
     size_t height = CGImageGetHeight(srcImage);
@@ -814,7 +814,7 @@ static BOOL UdeskYYCGImageDecodeToBitmapBufferWith32BitFormat(CGImageRef srcImag
     destFormat.colorSpace = UAVS_YYCGColorSpaceGetDeviceRGB();
     destFormat.bitmapInfo = bitmapInfo;
     dest->data = NULL;
-    if (UdeskYYCGImageDecodeToBitmapBufferWithAnyFormat(srcImage, dest, &destFormat)) return YES;
+    if (UavsYYCGImageDecodeToBitmapBufferWithAnyFormat(srcImage, dest, &destFormat)) return YES;
     
     CGBitmapInfo contextBitmapInfo = bitmapInfo & kCGBitmapByteOrderMask;
     if (!hasAlpha || alphaPremultiplied) {
@@ -926,9 +926,9 @@ CGImageRef UAVS_YYCGImageCreateAffineTransformCopy(CGImageRef imageRef, CGAffine
     CGDataProviderRef tmpProvider = NULL, destProvider = NULL;
     CGImageRef tmpImage = NULL, destImage = NULL;
     vImage_Buffer src = {0}, tmp = {0}, dest = {0};
-    if(!UdeskYYCGImageDecodeToBitmapBufferWith32BitFormat(imageRef, &src, kCGImageAlphaFirst | kCGBitmapByteOrderDefault)) return NULL;
+    if(!UavsYYCGImageDecodeToBitmapBufferWith32BitFormat(imageRef, &src, kCGImageAlphaFirst | kCGBitmapByteOrderDefault)) return NULL;
     
-    size_t destBytesPerRow = UdeskYYImageByteAlign(destWidth * 4, 32);
+    size_t destBytesPerRow = UavsYYImageByteAlign(destWidth * 4, 32);
     tmp.data = malloc(destHeight * destBytesPerRow);
     if (!tmp.data) goto fail;
     
@@ -942,7 +942,7 @@ CGImageRef UAVS_YYCGImageCreateAffineTransformCopy(CGImageRef imageRef, CGAffine
     free(src.data);
     src.data = NULL;
     
-    tmpProvider = CGDataProviderCreateWithData(tmp.data, tmp.data, destHeight * destBytesPerRow, UdeskYYCGDataProviderReleaseDataCallback);
+    tmpProvider = CGDataProviderCreateWithData(tmp.data, tmp.data, destHeight * destBytesPerRow, UavsYYCGDataProviderReleaseDataCallback);
     if (!tmpProvider) goto fail;
     tmp.data = NULL; // hold by provider
     tmpImage = CGImageCreate(destWidth, destHeight, 8, 32, destBytesPerRow, UAVS_YYCGColorSpaceGetDeviceRGB(), kCGImageAlphaFirst | kCGBitmapByteOrderDefault, tmpProvider, NULL, false, kCGRenderingIntentDefault);
@@ -955,11 +955,11 @@ CGImageRef UAVS_YYCGImageCreateAffineTransformCopy(CGImageRef imageRef, CGAffine
         return tmpImage;
     }
     
-    if (!UdeskYYCGImageDecodeToBitmapBufferWith32BitFormat(tmpImage, &dest, destBitmapInfo)) goto fail;
+    if (!UavsYYCGImageDecodeToBitmapBufferWith32BitFormat(tmpImage, &dest, destBitmapInfo)) goto fail;
     CFRelease(tmpImage);
     tmpImage = NULL;
     
-    destProvider = CGDataProviderCreateWithData(dest.data, dest.data, destHeight * destBytesPerRow, UdeskYYCGDataProviderReleaseDataCallback);
+    destProvider = CGDataProviderCreateWithData(dest.data, dest.data, destHeight * destBytesPerRow, UavsYYCGDataProviderReleaseDataCallback);
     if (!destProvider) goto fail;
     dest.data = NULL; // hold by provider
     destImage = CGImageCreate(destWidth, destHeight, 8, 32, destBytesPerRow, UAVS_YYCGColorSpaceGetDeviceRGB(), destBitmapInfo, destProvider, NULL, false, kCGRenderingIntentDefault);
@@ -1018,16 +1018,16 @@ CGImageRef UAVS_YYCGImageCreateCopyWithOrientation(CGImageRef imageRef, UIImageO
     BOOL swapWidthAndHeight = NO;
     switch (orientation) {
         case UIImageOrientationDown: {
-            transform = CGAffineTransformMakeRotation(UdeskYYImageDegreesToRadians(180));
+            transform = CGAffineTransformMakeRotation(UavsYYImageDegreesToRadians(180));
             transform = CGAffineTransformTranslate(transform, -(CGFloat)width, -(CGFloat)height);
         } break;
         case UIImageOrientationLeft: {
-            transform = CGAffineTransformMakeRotation(UdeskYYImageDegreesToRadians(90));
+            transform = CGAffineTransformMakeRotation(UavsYYImageDegreesToRadians(90));
             transform = CGAffineTransformTranslate(transform, -(CGFloat)0, -(CGFloat)height);
             swapWidthAndHeight = YES;
         } break;
         case UIImageOrientationRight: {
-            transform = CGAffineTransformMakeRotation(UdeskYYImageDegreesToRadians(-90));
+            transform = CGAffineTransformMakeRotation(UavsYYImageDegreesToRadians(-90));
             transform = CGAffineTransformTranslate(transform, -(CGFloat)width, (CGFloat)0);
             swapWidthAndHeight = YES;
         } break;
@@ -1040,13 +1040,13 @@ CGImageRef UAVS_YYCGImageCreateCopyWithOrientation(CGImageRef imageRef, UIImageO
             transform = CGAffineTransformScale(transform, 1, -1);
         } break;
         case UIImageOrientationLeftMirrored: {
-            transform = CGAffineTransformMakeRotation(UdeskYYImageDegreesToRadians(-90));
+            transform = CGAffineTransformMakeRotation(UavsYYImageDegreesToRadians(-90));
             transform = CGAffineTransformScale(transform, 1, -1);
             transform = CGAffineTransformTranslate(transform, -(CGFloat)width, -(CGFloat)height);
             swapWidthAndHeight = YES;
         } break;
         case UIImageOrientationRightMirrored: {
-            transform = CGAffineTransformMakeRotation(UdeskYYImageDegreesToRadians(90));
+            transform = CGAffineTransformMakeRotation(UavsYYImageDegreesToRadians(90));
             transform = CGAffineTransformScale(transform, 1, -1);
             swapWidthAndHeight = YES;
         } break;
@@ -1243,7 +1243,7 @@ CFDataRef UAVS_YYCGImageCreateEncodedWebPData(CGImageRef imageRef, BOOL lossless
     if (height == 0 || height > WEBP_MAX_DIMENSION) return nil;
     
     vImage_Buffer buffer = {0};
-    if(!UdeskYYCGImageDecodeToBitmapBufferWith32BitFormat(imageRef, &buffer, kCGImageAlphaLast | kCGBitmapByteOrderDefault)) return nil;
+    if(!UavsYYCGImageDecodeToBitmapBufferWith32BitFormat(imageRef, &buffer, kCGImageAlphaLast | kCGBitmapByteOrderDefault)) return nil;
     
     WebPConfig config = {0};
     WebPPicture picture = {0};
@@ -1377,7 +1377,7 @@ CGImageRef UAVS_YYCGImageCreateWithWebPData(CFDataRef webpData,
     hasAlpha = config.input.has_alpha;
     bitsPerComponent = 8;
     bitsPerPixel = 32;
-    bytesPerRow = UdeskYYImageByteAlign(bitsPerPixel / 8 * canvasWidth, 32);
+    bytesPerRow = UavsYYImageByteAlign(bitsPerPixel / 8 * canvasWidth, 32);
     destLength = bytesPerRow * canvasHeight;
     if (decodeForDisplay) {
         bitmapInfo = kCGBitmapByteOrder32Host;
@@ -1416,7 +1416,7 @@ CGImageRef UAVS_YYCGImageCreateWithWebPData(CFDataRef webpData,
         }
     }
     
-    provider = CGDataProviderCreateWithData(destBytes, destBytes, destLength, UdeskYYCGDataProviderReleaseDataCallback);
+    provider = CGDataProviderCreateWithData(destBytes, destBytes, destLength, UavsYYCGDataProviderReleaseDataCallback);
     if (!provider) goto fail;
     destBytes = NULL; // hold by provider
     
@@ -2084,7 +2084,7 @@ CGImageRef UAVS_YYCGImageCreateWithWebPData(CFDataRef webpData,
         uint32_t size = 0;
         uint8_t *bytes = uavs_yy_png_copy_frame_data_at_index(_data.bytes, _apngSource, (uint32_t)index, &size);
         if (!bytes) return NULL;
-        CGDataProviderRef provider = CGDataProviderCreateWithData(bytes, bytes, size, UdeskYYCGDataProviderReleaseDataCallback);
+        CGDataProviderRef provider = CGDataProviderCreateWithData(bytes, bytes, size, UavsYYCGDataProviderReleaseDataCallback);
         if (!provider) {
             free(bytes);
             return NULL;
@@ -2148,7 +2148,7 @@ CGImageRef UAVS_YYCGImageCreateWithWebPData(CFDataRef webpData,
         
         size_t bitsPerComponent = 8;
         size_t bitsPerPixel = 32;
-        size_t bytesPerRow = UdeskYYImageByteAlign(bitsPerPixel / 8 * width, 32);
+        size_t bytesPerRow = UavsYYImageByteAlign(bitsPerPixel / 8 * width, 32);
         size_t length = bytesPerRow * height;
         CGBitmapInfo bitmapInfo = kCGBitmapByteOrder32Host | kCGImageAlphaPremultipliedFirst; //bgrA
         
@@ -2186,7 +2186,7 @@ CGImageRef UAVS_YYCGImageCreateWithWebPData(CFDataRef webpData,
             }
         }
         
-        CGDataProviderRef provider = CGDataProviderCreateWithData(pixels, pixels, length, UdeskYYCGDataProviderReleaseDataCallback);
+        CGDataProviderRef provider = CGDataProviderCreateWithData(pixels, pixels, length, UavsYYCGDataProviderReleaseDataCallback);
         if (!provider) {
             free(pixels);
             return NULL;

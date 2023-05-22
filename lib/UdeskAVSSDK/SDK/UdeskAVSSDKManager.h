@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UAVSSurveyModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,8 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UdeskAVSSDKManager : NSObject
 
+/**sdk 所有配置和系统参数*/
 @property (nonatomic, strong, readonly) UdeskAVSInitModel *avsContext;
-
 
 + (instancetype)sharedInstance;
 
@@ -84,6 +85,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**获取SDK版本*/
 - (NSString *)getSDKVersion;
+
+/**是否展示满意度调查*/
+- (BOOL)isShowSurvey;
+
+/**获取满意度调查信息*/
+- (UAVSSurveyModel *)getSurveyModel;
+
+/**提交满意度调查*/
+- (void)submitSurvey:(NSDictionary *)surveyInfo completion:(void(^)(NSError *error))completion;
+
 
 @end
 

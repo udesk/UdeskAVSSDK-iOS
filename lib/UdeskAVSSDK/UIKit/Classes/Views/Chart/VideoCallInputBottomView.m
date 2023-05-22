@@ -8,6 +8,7 @@
 
 #import "VideoCallInputBottomView.h"
 #import "UdeskProjectHeader.h"
+#import "UdeskAVSBundleUtils.h"
 
 static NSString *const reuse_cell = @"UICollectionViewCell";
 
@@ -118,7 +119,7 @@ static NSString *const reuse_cell = @"UICollectionViewCell";
     
     if (type.intValue == VideoCallInputBottomButtonTypeImage) {
         iv.image = [UIImage udavs_imageNamed:@"udMessageImage"];
-        textLabel.text = @"图片";
+        textLabel.text = getUDAVSLocalizedString(@"uavs_button_image");
     }
 }
 

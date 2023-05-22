@@ -15,17 +15,17 @@
 #import <objc/runtime.h>
 
 // Dummy class for category
-@interface Udesk_UIButton_YYWebImage : NSObject @end
-@implementation Udesk_UIButton_YYWebImage @end
+@interface Uavs_UIButton_YYWebImage : NSObject @end
+@implementation Uavs_UIButton_YYWebImage @end
 
-static inline NSNumber *UdeskUIControlStateSingle(UIControlState state) {
+static inline NSNumber *UavsUIControlStateSingle(UIControlState state) {
     if (state & UIControlStateHighlighted) return @(UIControlStateHighlighted);
     if (state & UIControlStateDisabled) return @(UIControlStateDisabled);
     if (state & UIControlStateSelected) return @(UIControlStateSelected);
     return @(UIControlStateNormal);
 }
 
-static inline NSArray *UdeskUIControlStateMulti(UIControlState state) {
+static inline NSArray *UavsUIControlStateMulti(UIControlState state) {
     NSMutableArray *array = [NSMutableArray new];
     if (state & UIControlStateHighlighted) [array addObject:@(UIControlStateHighlighted)];
     if (state & UIControlStateDisabled) [array addObject:@(UIControlStateDisabled)];
@@ -167,7 +167,7 @@ static int _YYWebImageBackgroundSetterKey;
 
 - (NSURL *)uavs_yy_imageURLForState:(UIControlState)state {
     UAVS_YYWebImageSetterDicForButton *dic = objc_getAssociatedObject(self, &UAVS_YYWebImageSetterKey);
-    UAVS_YYWebImageSetter *setter = [dic setterForState:UdeskUIControlStateSingle(state)];
+    UAVS_YYWebImageSetter *setter = [dic setterForState:UavsUIControlStateSingle(state)];
     return setter.imageURL;
 }
 
@@ -237,7 +237,7 @@ static int _YYWebImageBackgroundSetterKey;
                   progress:(UAVS_YYWebImageProgressBlock)progress
                  transform:(UAVS_YYWebImageTransformBlock)transform
                 completion:(UAVS_YYWebImageCompletionBlock)completion {
-    for (NSNumber *num in UdeskUIControlStateMulti(state)) {
+    for (NSNumber *num in UavsUIControlStateMulti(state)) {
         [self _uavs_yy_setImageWithURL:imageURL
                    forSingleState:num
                       placeholder:placeholder
@@ -250,7 +250,7 @@ static int _YYWebImageBackgroundSetterKey;
 }
 
 - (void)uavs_yy_cancelImageRequestForState:(UIControlState)state {
-    for (NSNumber *num in UdeskUIControlStateMulti(state)) {
+    for (NSNumber *num in UavsUIControlStateMulti(state)) {
         [self _uavs_yy_cancelImageRequestForSingleState:num];
     }
 }
@@ -348,7 +348,7 @@ static int _YYWebImageBackgroundSetterKey;
 
 - (NSURL *)uavs_yy_backgroundImageURLForState:(UIControlState)state {
     UAVS_YYWebImageSetterDicForButton *dic = objc_getAssociatedObject(self, &_YYWebImageBackgroundSetterKey);
-    UAVS_YYWebImageSetter *setter = [dic setterForState:UdeskUIControlStateSingle(state)];
+    UAVS_YYWebImageSetter *setter = [dic setterForState:UavsUIControlStateSingle(state)];
     return setter.imageURL;
 }
 
@@ -418,7 +418,7 @@ static int _YYWebImageBackgroundSetterKey;
                             progress:(UAVS_YYWebImageProgressBlock)progress
                            transform:(UAVS_YYWebImageTransformBlock)transform
                           completion:(UAVS_YYWebImageCompletionBlock)completion {
-    for (NSNumber *num in UdeskUIControlStateMulti(state)) {
+    for (NSNumber *num in UavsUIControlStateMulti(state)) {
         [self _uavs_yy_setBackgroundImageWithURL:imageURL
                              forSingleState:num
                                 placeholder:placeholder
@@ -431,7 +431,7 @@ static int _YYWebImageBackgroundSetterKey;
 }
 
 - (void)uavs_yy_cancelBackgroundImageRequestForState:(UIControlState)state {
-    for (NSNumber *num in UdeskUIControlStateMulti(state)) {
+    for (NSNumber *num in UavsUIControlStateMulti(state)) {
         [self _uavs_yy_cancelBackgroundImageRequestForSingleState:num];
     }
 }

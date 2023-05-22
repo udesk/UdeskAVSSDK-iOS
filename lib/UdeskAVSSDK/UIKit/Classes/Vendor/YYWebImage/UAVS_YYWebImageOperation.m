@@ -21,7 +21,7 @@
 
 
 /// Returns nil in App Extension.
-static UIApplication *_UdeskYYSharedApplication() {
+static UIApplication *_UavsYYSharedApplication() {
     static BOOL isAppExtension = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -36,7 +36,7 @@ static UIApplication *_UdeskYYSharedApplication() {
 }
 
 /// Returns YES if the right-bottom pixel is filled.
-static BOOL UdeskYYCGImageLastPixelFilled(CGImageRef image) {
+static BOOL UavsYYCGImageLastPixelFilled(CGImageRef image) {
     if (!image) return NO;
     size_t width = CGImageGetWidth(image);
     size_t height = CGImageGetHeight(image);
@@ -51,7 +51,7 @@ static BOOL UdeskYYCGImageLastPixelFilled(CGImageRef image) {
 }
 
 /// Returns JPEG SOS (Start Of Scan) Marker
-static NSData *UdeskJPEGSOSMarker() {
+static NSData *UavsJPEGSOSMarker() {
     // "Start Of Scan" Marker
     static NSData *marker = nil;
     static dispatch_once_t onceToken;
@@ -63,32 +63,32 @@ static NSData *UdeskJPEGSOSMarker() {
 }
 
 
-static NSMutableSet *UdeskURLBlacklist;
-static dispatch_semaphore_t UdeskURLBlacklistLock;
+static NSMutableSet *UavsURLBlacklist;
+static dispatch_semaphore_t UavsURLBlacklistLock;
 
-static void UdeskURLBlacklistInit() {
+static void UavsURLBlacklistInit() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UdeskURLBlacklist = [NSMutableSet new];
-        UdeskURLBlacklistLock = dispatch_semaphore_create(1);
+        UavsURLBlacklist = [NSMutableSet new];
+        UavsURLBlacklistLock = dispatch_semaphore_create(1);
     });
 }
 
-static BOOL UdeskURLBlackListContains(NSURL *url) {
+static BOOL UavsURLBlackListContains(NSURL *url) {
     if (!url || url == (id)[NSNull null]) return NO;
-    UdeskURLBlacklistInit();
-    dispatch_semaphore_wait(UdeskURLBlacklistLock, DISPATCH_TIME_FOREVER);
-    BOOL contains = [UdeskURLBlacklist containsObject:url];
-    dispatch_semaphore_signal(UdeskURLBlacklistLock);
+    UavsURLBlacklistInit();
+    dispatch_semaphore_wait(UavsURLBlacklistLock, DISPATCH_TIME_FOREVER);
+    BOOL contains = [UavsURLBlacklist containsObject:url];
+    dispatch_semaphore_signal(UavsURLBlacklistLock);
     return contains;
 }
 
-static void UdeskURLInBlackListAdd(NSURL *url) {
+static void UavsURLInBlackListAdd(NSURL *url) {
     if (!url || url == (id)[NSNull null]) return;
-    UdeskURLBlacklistInit();
-    dispatch_semaphore_wait(UdeskURLBlacklistLock, DISPATCH_TIME_FOREVER);
-    [UdeskURLBlacklist addObject:url];
-    dispatch_semaphore_signal(UdeskURLBlacklistLock);
+    UavsURLBlacklistInit();
+    dispatch_semaphore_wait(UavsURLBlacklistLock, DISPATCH_TIME_FOREVER);
+    [UavsURLBlacklist addObject:url];
+    dispatch_semaphore_signal(UavsURLBlacklistLock);
 }
 
 
@@ -268,7 +268,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
 - (void)dealloc {
     [_lock lock];
     if (_taskID != UIBackgroundTaskInvalid) {
-        [_UdeskYYSharedApplication() endBackgroundTask:_taskID];
+        [_UavsYYSharedApplication() endBackgroundTask:_taskID];
         _taskID = UIBackgroundTaskInvalid;
     }
     if ([self isExecuting]) {
@@ -292,7 +292,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
 - (void)_endBackgroundTask {
     [_lock lock];
     if (_taskID != UIBackgroundTaskInvalid) {
-        [_UdeskYYSharedApplication() endBackgroundTask:_taskID];
+        [_UavsYYSharedApplication() endBackgroundTask:_taskID];
         _taskID = UIBackgroundTaskInvalid;
     }
     [_lock unlock];
@@ -348,7 +348,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
 - (void)_startRequest:(id)object {
     if ([self isCancelled]) return;
     @autoreleasepool {
-        if ((_options & UAVS_YYWebImageOptionIgnoreFailedURL) && UdeskURLBlackListContains(_request.URL)) {
+        if ((_options & UAVS_YYWebImageOptionIgnoreFailedURL) && UavsURLBlackListContains(_request.URL)) {
             NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:@{ NSLocalizedDescriptionKey : @"Failed to load URL, blacklisted." }];
             [_lock lock];
             if (![self isCancelled]) {
@@ -427,10 +427,10 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
             if (!image) {
                 error = [NSError errorWithDomain:@"com.ibireme.image" code:-1 userInfo:@{ NSLocalizedDescriptionKey : @"Web image decode fail." }];
                 if (_options & UAVS_YYWebImageOptionIgnoreFailedURL) {
-                    if (UdeskURLBlackListContains(_request.URL)) {
+                    if (UavsURLBlackListContains(_request.URL)) {
                         error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorFileDoesNotExist userInfo:@{ NSLocalizedDescriptionKey : @"Failed to load URL, blacklisted." }];
                     } else {
-                        UdeskURLInBlackListAdd(_request.URL);
+                        UavsURLInBlackListAdd(_request.URL);
                     }
                 }
             }
@@ -588,7 +588,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
                 NSInteger scanLength = (NSInteger)_data.length - (NSInteger)_progressiveScanedLength - 4;
                 if (scanLength <= 2) return;
                 NSRange scanRange = NSMakeRange(_progressiveScanedLength, scanLength);
-                NSRange markerRange = [_data rangeOfData:UdeskJPEGSOSMarker() options:kNilOptions range:scanRange];
+                NSRange markerRange = [_data rangeOfData:UavsJPEGSOSMarker() options:kNilOptions range:scanRange];
                 _progressiveScanedLength = _data.length;
                 if (markerRange.location == NSNotFound) return;
                 if ([self isCancelled]) return;
@@ -612,7 +612,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
             if (!image) return;
             if ([self isCancelled]) return;
             
-            if (!UdeskYYCGImageLastPixelFilled(image.CGImage)) return;
+            if (!UavsYYCGImageLastPixelFilled(image.CGImage)) return;
             _progressiveDisplayCount++;
             
             CGFloat radius = 32;
@@ -722,7 +722,7 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
                     error.code != NSURLErrorCancelled &&
                     error.code != NSURLErrorTimedOut &&
                     error.code != NSURLErrorUserCancelledAuthentication) {
-                    UdeskURLInBlackListAdd(_request.URL);
+                    UavsURLInBlackListAdd(_request.URL);
                 }
             }
         }
@@ -749,10 +749,10 @@ static void UdeskURLInBlackListAdd(NSURL *url) {
             } else {
                 self.executing = YES;
                 [self performSelector:@selector(_startOperation) onThread:[[self class] _networkThread] withObject:nil waitUntilDone:NO modes:@[NSDefaultRunLoopMode]];
-                if ((_options & UAVS_YYWebImageOptionAllowBackgroundTask) && _UdeskYYSharedApplication()) {
+                if ((_options & UAVS_YYWebImageOptionAllowBackgroundTask) && _UavsYYSharedApplication()) {
                     __weak __typeof__ (self) _self = self;
                     if (_taskID == UIBackgroundTaskInvalid) {
-                        _taskID = [_UdeskYYSharedApplication() beginBackgroundTaskWithExpirationHandler:^{
+                        _taskID = [_UavsYYSharedApplication() beginBackgroundTaskWithExpirationHandler:^{
                             __strong __typeof (_self) self = _self;
                             if (self) {
                                 [self cancel];

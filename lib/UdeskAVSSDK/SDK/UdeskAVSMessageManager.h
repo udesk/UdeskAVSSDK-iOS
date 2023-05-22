@@ -13,6 +13,7 @@
 /**收到消息*/
 - (void)uavs_messageArrived:(UdeskAVSBaseMessage *)message;
 
+@optional
 /**消息发送状态更新*/
 - (void)uavs_messageSendStatusChange:(UdeskAVSBaseMessage *)message;
 

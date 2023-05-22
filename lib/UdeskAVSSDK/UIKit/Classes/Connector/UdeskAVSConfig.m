@@ -8,25 +8,51 @@
 #import "UdeskAVSConfig.h"
 #import "UdeskAVSSDK.h"
 #import "UdeskIndexViewController.h"
+#import "UAVSLanguageConfig.h"
+#import "UdeskAVSConnector.h"
 
 @implementation UdeskAVSConfig
 
 
 + (instancetype)defaultConfig{
-    static UdeskAVSConfig *_config = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _config = [[UdeskAVSConfig alloc] init];
-        [_config defauleSetUp];
-    });
-    
+    UdeskAVSConfig *_config = [[UdeskAVSConfig alloc] init];
     return _config;
 }
 
-- (void)defauleSetUp
++ (UdeskAVSConfig *)currentConfig
 {
-    _isScreenShare = NO;
-    _isMiniView = NO;
+    return  [UdeskAVSConnector sharedInstance].sdkConfig;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setConfigToDefault];
+    }
+    return self;
+}
+
+- (void)setLanguage:(NSString *)language{
+    NSString * defaultWaitAnswerText = getUDAVSLocalizedString(@"uavs_tip_defaultWaitAnswer");
+    NSString * defaultQueueTipsText = getUDAVSLocalizedString(@"uavs_tip_defaultQueueUp");
+    
+    [UAVSLanguageConfig sharedConfig].language = language;
+    
+    //刷新默认文案
+    if ([self.defaultWaitAnswerText isEqualToString:defaultWaitAnswerText]) {
+        self.defaultWaitAnswerText = getUDAVSLocalizedString(@"uavs_tip_defaultWaitAnswer");
+    }
+    if ([self.defaultQueueTipsText isEqualToString:defaultQueueTipsText]) {
+        self.defaultQueueTipsText = getUDAVSLocalizedString(@"uavs_tip_defaultQueueUp");
+    }
+}
+
+- (void)setConfigToDefault {
+    self.isScreenShare = NO;
+    self.isMiniView = NO;
+    self.defaultWaitAnswerText = getUDAVSLocalizedString(@"uavs_tip_defaultWaitAnswer");
+    self.defaultQueueTipsText = getUDAVSLocalizedString(@"uavs_tip_defaultQueueUp");
 }
 
 @end

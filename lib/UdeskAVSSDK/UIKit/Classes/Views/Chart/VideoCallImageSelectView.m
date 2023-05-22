@@ -75,7 +75,6 @@ static NSInteger selectImageTag = 101;
 
 - (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection original:(BOOL)original array:(NSMutableArray *)array
 {
-    //NSLog(@"相簿名:%@", assetCollection.localizedTitle);
     
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
     options.resizeMode = PHImageRequestOptionsResizeModeFast;
@@ -129,14 +128,14 @@ static NSInteger selectImageTag = 101;
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, 100 , 47)];
     leftButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [leftButton setTitle:@"取消" forState:UIControlStateNormal];
+    [leftButton setTitle:getUDAVSLocalizedString(@"uavs_common_cancel") forState:UIControlStateNormal];
     [leftButton setTitleColor:UIColorHex(#ADADADFF) forState:UIControlStateNormal];
     [leftButton addTarget:self action:@selector(leftButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:leftButton];
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(UD_SCREEN_WIDTH - 100 - 16, 0, 100 , 47)];
     rightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [rightButton setTitle:@"发送" forState:UIControlStateNormal];
+    [rightButton setTitle:getUDAVSLocalizedString(@"uavs_common_send") forState:UIControlStateNormal];
     [rightButton setTitleColor:UIColorHex(#1A52A4FF) forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(rightButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     

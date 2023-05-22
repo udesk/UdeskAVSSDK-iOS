@@ -8,13 +8,13 @@
 
 #import "VideoCallChatDataSource.h"
 
-#import "ChatBaseLayout.h"
-#import "ChatBaseCell.h"
+#import "UAVSChatBaseLayout.h"
+#import "UAVSChatBaseCell.h"
 
 @implementation VideoCallChatDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView messageHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatBaseLayout *layout = [self.messageArray objectAtIndex:indexPath.row];
+    UAVSChatBaseLayout *layout = [self.messageArray objectAtIndex:indexPath.row];
     return layout.height;;
 }
 
@@ -35,10 +35,10 @@
     NSString *messageLayoutName = NSStringFromClass([layout class]);    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:messageLayoutName];
     if (!cell) {
-        cell = [(ChatBaseLayout *)layout getCellWithReuseIdentifier:messageLayoutName];
+        cell = [(UAVSChatBaseLayout *)layout getCellWithReuseIdentifier:messageLayoutName];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    ChatBaseCell *chatCell = (ChatBaseCell *)cell;
+    UAVSChatBaseCell *chatCell = (UAVSChatBaseCell *)cell;
     chatCell.baseLayout = layout;
     
     return cell;

@@ -7,10 +7,11 @@
 //
 
 #import "UAVSPhotoView.h"
-#import "UdeskAVCSUtil.h"
+#import "UdeskAVSUtil.h"
 #import "UAVS_YYWebImage.h"
 #import "UdeskAVSButton.h"
 #import "UIImage+UdeskAVS.h"
+#import "UdeskAVSBundleUtils.h"
 
 #define Gap 10   //俩照片间黑色间距
 
@@ -83,15 +84,15 @@
 {
     NSString *msg = nil ;
     if(error != NULL){
-        msg = @"保存失败";
+        msg = getUDAVSLocalizedString(@"uavs_saveImg_failed");
     }else{
-        msg = @"保存成功";
+        msg = getUDAVSLocalizedString(@"uavs_saveImg_success");
     }
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:msg message:nil preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *conform = [UIAlertAction actionWithTitle:getUDAVSLocalizedString(@"uavs_common_makeSure") style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:conform];
-    [[UdeskAVCSUtil currentViewController] presentViewController:alert animated:YES completion:nil];
+    [[UdeskAVSUtil currentViewController] presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - OneScroll的代理方法

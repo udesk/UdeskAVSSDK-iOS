@@ -37,6 +37,21 @@ NS_ASSUME_NONNULL_BEGIN
 //拉伸气泡
 + (UIImage *)udBubbleImageWithName:(NSString *)name;
 
+/** 满意度评价关闭按钮 */
++ (UIImage *)udDefaultSurveyCloseImage;
+
+/** 满意度评价表情 满意 */
++ (UIImage *)udDefaultSurveyExpressionSatisfiedImage;
+
+/** 满意度评价表情 不满意 */
++ (UIImage *)udDefaultSurveyExpressionUnsatisfactoryImage;
+
+/** 满意度评价表情 空星 */
++ (UIImage *)udDefaultSurveyStarEmptyImage;
+
+/** 满意度评价表情 实星 */
++ (UIImage *)udDefaultSurveyStarFilledImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -139,4 +139,31 @@
 }
 
 
+
+/** 满意度评价关闭按钮 */
++ (UIImage *)udDefaultSurveyCloseImage {
+    return [UIImage udavs_imageNamed:(@"udSurveyClose.png")];
+}
+
+/** 满意度评价表情 满意 */
++ (UIImage *)udDefaultSurveyExpressionSatisfiedImage {
+    return [UIImage udavs_imageNamed:(@"udesk_avs_statify_checked.png")];
+}
+
+/** 满意度评价表情 不满意 */
++ (UIImage *)udDefaultSurveyExpressionUnsatisfactoryImage {
+    return [UIImage udavs_imageNamed:(@"udesk_avs_unstatify_checked.png")];
+}
+
+/** 满意度评价表情 空星 */
++ (UIImage *)udDefaultSurveyStarEmptyImage {
+    return [UIImage udavs_imageNamed:(@"udSurveyStarEmpty.png")];
+}
+
+/** 满意度评价表情 实星 */
++ (UIImage *)udDefaultSurveyStarFilledImage {
+    return [UIImage udavs_imageNamed:(@"udSurveyStarFilled.png")];
+}
+
+
 @end

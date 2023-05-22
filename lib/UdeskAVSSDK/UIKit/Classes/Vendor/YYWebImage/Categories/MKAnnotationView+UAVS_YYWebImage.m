@@ -15,8 +15,8 @@
 #import <objc/runtime.h>
 
 // Dummy class for category
-@interface Udesk_MKAnnotationView_YYWebImage : NSObject @end
-@implementation Udesk_MKAnnotationView_YYWebImage @end
+@interface Uavs_MKAnnotationView_YYWebImage : NSObject @end
+@implementation Uavs_MKAnnotationView_YYWebImage @end
 
 
 static int UAVS_YYWebImageSetterKey;

@@ -9,8 +9,8 @@
 #import "VideoCallUIManager.h"
 #import "UdeskAVSMessageManager.h"
 #import "UAVSChatMessageUtil.h"
-#import "ChatTextLayout.h"
-#import "ChatImageLayout.h"
+#import "UAVSChatTextLayout.h"
+#import "UAVSChatImageLayout.h"
 #import "UdeskProjectHeader.h"
 
 
@@ -27,7 +27,7 @@
 }
 
 - (void)doSomethingDefault:(NSArray *)layouts{
-    [layouts enumerateObjectsUsingBlock:^(ChatBaseLayout *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [layouts enumerateObjectsUsingBlock:^(UAVSChatBaseLayout *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.message.agentAvtarUrl = self.agent.avatar;
     }];
 }
@@ -118,8 +118,8 @@
 - (UdeskAVSBaseMessage *)getLastMessage {
     @try {
         UdeskAVSBaseMessage *lastMessage;
-        if (self.showMessageList.count && [self.showMessageList.lastObject isKindOfClass:[ChatBaseLayout class]]) {
-            ChatBaseLayout *baseMessage = (ChatBaseLayout *)self.showMessageList.lastObject;
+        if (self.showMessageList.count && [self.showMessageList.lastObject isKindOfClass:[UAVSChatBaseLayout class]]) {
+            UAVSChatBaseLayout *baseMessage = (UAVSChatBaseLayout *)self.showMessageList.lastObject;
             lastMessage = baseMessage.message;
         }
         return lastMessage;
@@ -159,12 +159,12 @@
 
 - (NSMutableArray *)filterMessage{
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
-    for (ChatBaseLayout *layout in self.showMessageList) {
+    for (UAVSChatBaseLayout *layout in self.showMessageList) {
         if (
             //[layout isKindOfClass:[ChatFormLayout class]] ||
-            [layout isKindOfClass:[ChatImageLayout class]] ||
+            [layout isKindOfClass:[UAVSChatImageLayout class]] ||
             //[layout isKindOfClass:[ChatRichLayout class]] ||
-            [layout isKindOfClass:[ChatTextLayout class]]
+            [layout isKindOfClass:[UAVSChatTextLayout class]]
             //[layout isKindOfClass:[ChatProductV2Layout class]] ||
             //[layout isKindOfClass:[ChatStoreLayout class]] ||
             //[layout isKindOfClass:[ChatSystemLayout class]]

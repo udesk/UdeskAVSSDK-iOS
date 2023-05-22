@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) int sdkAppid;
 @property (nonatomic, strong) NSString *userSig;
 @property (nonatomic, assign) int roomId;
+@property (nonatomic, strong) NSString *channelId;
+
 
 @end
 

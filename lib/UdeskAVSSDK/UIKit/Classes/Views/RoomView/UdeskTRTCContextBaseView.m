@@ -68,7 +68,9 @@
         NSNumber *newValue = change[@"new"];
         [self isViewShareChanged:newValue];
     }
-    NSLog(@"监听到 %@ 的 %@ 改变了 %@", [object class], keyPath, change);
+    
+    NSString *tip = getUDAVSLocalizedString(@"uavs_log_listenModelChange");
+    NSLog(@"%@, %@->%@ ==> %@", tip, [object class], keyPath, change);
     /* 输出结果：
      监听到 p1 的 age 改变了 {
          kind = 1;

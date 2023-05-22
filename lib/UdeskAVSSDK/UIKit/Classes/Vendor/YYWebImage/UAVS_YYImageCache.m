@@ -14,11 +14,11 @@
 #import "UIImage+UAVS_YYWebImage.h"
 #import "UAVS_YYCache.h"
 
-static inline dispatch_queue_t UdeskYYImageCacheIOQueue() {
+static inline dispatch_queue_t UavsYYImageCacheIOQueue() {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 }
 
-static inline dispatch_queue_t UdeskYYImageCacheDecodeQueue() {
+static inline dispatch_queue_t UavsYYImageCacheDecodeQueue() {
     return dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
 }
 
@@ -113,14 +113,14 @@ static inline dispatch_queue_t UdeskYYImageCacheDecodeQueue() {
             if (image.yy_isDecodedForDisplay) {
                 [_memoryCache setObject:image forKey:key withCost:[_self imageCost:image]];
             } else {
-                dispatch_async(UdeskYYImageCacheDecodeQueue(), ^{
+                dispatch_async(UavsYYImageCacheDecodeQueue(), ^{
                     __strong typeof(_self) self = _self;
                     if (!self) return;
                     [self.memoryCache setObject:[image yy_imageByDecoded] forKey:key withCost:[self imageCost:image]];
                 });
             }
         } else if (imageData) {
-            dispatch_async(UdeskYYImageCacheDecodeQueue(), ^{
+            dispatch_async(UavsYYImageCacheDecodeQueue(), ^{
                 __strong typeof(_self) self = _self;
                 if (!self) return;
                 UIImage *newImage = [self imageFromData:imageData];
@@ -135,7 +135,7 @@ static inline dispatch_queue_t UdeskYYImageCacheDecodeQueue() {
             }
             [_diskCache setObject:imageData forKey:key];
         } else if (image) {
-            dispatch_async(UdeskYYImageCacheIOQueue(), ^{
+            dispatch_async(UavsYYImageCacheIOQueue(), ^{
                 __strong typeof(_self) self = _self;
                 if (!self) return;
                 NSData *data = [image yy_imageDataRepresentation];

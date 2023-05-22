@@ -13,4 +13,7 @@
 
 + (UIImage *)bundleImageNamed:(NSString *)imageName;
 
+//多语言
+NSString *getUDAVSLocalizedString(NSString *key);
+
 @end

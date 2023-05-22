@@ -8,6 +8,7 @@
 
 #import "VideoCallChatToolView.h"
 #import "UdeskProjectHeader.h"
+#import "UdeskAVSBundleUtils.h"
 
 @implementation VideoCallChatToolView
 
@@ -25,7 +26,7 @@
     CGRect frame = CGRectMake(16, 7, UD_SCREEN_WIDTH -16-28-16 - 16, 34);
     UdeskAVSHPGrowingTextView *growingTextView = [[UdeskAVSHPGrowingTextView alloc] initWithFrame:frame];
     
-    growingTextView.placeholder = @"输入消息";
+    growingTextView.placeholder = getUDAVSLocalizedString(@"uavs_placeHolder_inputMsg");
     growingTextView.delegate = (id)self;
     growingTextView.returnKeyType = UIReturnKeySend;
     growingTextView.font = [UIFont systemFontOfSize:14];

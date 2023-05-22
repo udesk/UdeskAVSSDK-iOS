@@ -11,7 +11,8 @@
 //#import <UdeskAVSSDK/UdeskAVSSDK.h>
 #import "UdeskAVSSDK.h"
 
-#import "UdeskAVCSUtil.h"
+#import "UAVSUIMacro.h"
+#import "UdeskAVSUtil.h"
 #import "UdeskAVSDateUtil.h"
 
 #import "UdeskAVSBundleUtils.h"

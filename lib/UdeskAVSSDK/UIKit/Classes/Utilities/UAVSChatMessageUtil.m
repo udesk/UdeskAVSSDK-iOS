@@ -7,9 +7,9 @@
 //
 
 #import "UAVSChatMessageUtil.h"
-#import "ChatTextLayout.h"
-#import "ChatImageLayout.h"
-#import "ChatDateLayout.h"
+#import "UAVSChatTextLayout.h"
+#import "UAVSChatImageLayout.h"
+#import "UAVSChatDateLayout.h"
 
 
 @implementation UAVSChatMessageUtil
@@ -45,18 +45,18 @@
             UdeskAVSBaseMessage *dateMsg = [[UdeskAVSBaseMessage alloc] init];
             dateMsg.timestamp = message.timestamp;
             dateMsg.fromType = UdeskAVSMessageFromTypeSystem;
-            ChatDateLayout *dateLayout = [[ChatDateLayout alloc] initWithMessage:dateMsg dateDisplay:display];
+            UAVSChatDateLayout *dateLayout = [[UAVSChatDateLayout alloc] initWithMessage:dateMsg dateDisplay:display];
             [msgLayout addObject:dateLayout];
         }
         
         switch (message.messageType) {
             case UdeskAVSMessageContentTypeText:{
-                ChatTextLayout *textLayout = [[ChatTextLayout alloc] initWithMessage:message dateDisplay:display];
+                UAVSChatTextLayout *textLayout = [[UAVSChatTextLayout alloc] initWithMessage:message dateDisplay:display];
                 [msgLayout addObject:textLayout];
                 break;
             }
             case UdeskAVSMessageContentTypeImage:{
-                ChatImageLayout *imageLayout = [[ChatImageLayout alloc] initWithMessage:message dateDisplay:display];
+                UAVSChatImageLayout *imageLayout = [[UAVSChatImageLayout alloc] initWithMessage:message dateDisplay:display];
                 [msgLayout addObject:imageLayout];
                 break;
             }

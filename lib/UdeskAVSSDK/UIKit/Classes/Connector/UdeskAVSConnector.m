@@ -10,6 +10,8 @@
 #import "UdeskIndexViewController.h"
 #import "UIAlertController+UdeskAVS.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "UdeskAVSBundleUtils.h"
+#import "UAVSSurveyView.h"
 
 @interface UdeskAVSConnector () <UdeskFetchMerchantDelegate>
 
@@ -86,7 +88,7 @@
 }
 
 - (void)didGetMerchantInfoError:(NSError *)error{
-    [UIAlertController udeskShowAlert:@"获取商户信息失败"
+    [UIAlertController udeskShowAlert:getUDAVSLocalizedString(@"uavs_error_GetMerchantInfo")
                      onViewController:self.udeskPresentedViewController
                            completion:^{
         if (self.resultCompletion) {
@@ -115,6 +117,28 @@
 - (BOOL)isLeveling
 {
     return self.baseUavsViewController;
+}
+
+- (void)closedViewRoom:(NSString *)roomId
+{
+    [self showSurveyView:roomId];
+}
+
+- (void)showSurveyView:(NSString *)roomId
+{
+    //显示满意度评价
+    if (!roomId || !self.udeskPresentedViewController) {
+        return;
+    }
+    
+    UAVSSurveyModel *surveyModel = [[UdeskAVSSDKManager sharedInstance] getSurveyModel];
+    if (!surveyModel.status) {//基本不可能为空
+        return;
+    }
+    
+    UAVSSurveyView *surveyView = [[UAVSSurveyView alloc] initWithSurvey:surveyModel roomId:roomId];
+    [surveyView showWithBaseVC:self.udeskPresentedViewController];
+    
 }
 
 @end

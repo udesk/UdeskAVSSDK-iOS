@@ -8,7 +8,7 @@
 #import "UdeskTRTCBottomView.h"
 #import "UdeskAVSSDK.h"
 #import "UdeskAVSMacroHeader.h"
-#import "ChatBaseLayout.h"
+#import "UAVSChatBaseLayout.h"
 
 //#import "UdeskProjectHeader.h"
 #import "UIView+UdeskAVS.h"
@@ -21,6 +21,7 @@
 #import "UAVSProtocolHeader.h"
 #import "UdeskRoomViewModel.h"
 #import "UdeskAVSConnector.h"
+#import "UdeskAVSBundleUtils.h"
 
 @interface UdeskTRTCBottomView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -252,7 +253,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView getContentCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ChatBaseLayout *layout = (ChatBaseLayout *)[self.messageList objectAtIndex:indexPath.section];
+    UAVSChatBaseLayout *layout = (UAVSChatBaseLayout *)[self.messageList objectAtIndex:indexPath.section];
     if ([layout isKindOfClass:[NSNull class]]) {
         static NSString *identifier = @"identifier_clear";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -286,7 +287,8 @@
             titleLabel.textColor = [UIColor whiteColor];
         }
         else if (message.messageType == UdeskAVSMessageContentTypeImage) {
-            titleLabel.attributedText = [[NSAttributedString alloc] initWithString:@"[图片]" attributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]}];
+            
+            titleLabel.attributedText = [[NSAttributedString alloc] initWithString:getUDAVSLocalizedString(@"uavs_msg_type_IMG") attributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]}];
         }
         return cell;
     }

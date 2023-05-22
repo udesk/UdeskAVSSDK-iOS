@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
     imageView.layer.contentsRect = [sheet contentsRectForCALayerAtIndex:6];
  
  */
-@interface UAVS_YYSpriteSheetImage : UIImage <UdeskYYAnimatedImage>
+@interface UAVS_YYSpriteSheetImage : UIImage <UavsYYAnimatedImage>
 
 /**
  Creates and returns an image object.

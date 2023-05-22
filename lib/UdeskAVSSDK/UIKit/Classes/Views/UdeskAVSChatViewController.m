@@ -12,7 +12,7 @@
 #import "VideoCallImageSelectView.h"
 #import "VideoCallUIManager.h"
 #import "VideoCallChatDataSource.h"
-#import "ChatBaseLayout.h"
+#import "UAVSChatBaseLayout.h"
 #import "UdeskProjectHeader.h"
 #import "NSDate+UdeskAVS.h"
 #import <YYText/YYText.h>
@@ -117,7 +117,7 @@
     _titleLabel.textColor = UIColorHex(#000000D9);
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.font = UDAVS_FONT(16);
-    _titleLabel.text = @"聊天";
+    _titleLabel.text = getUDAVSLocalizedString(@"uavs_title_chat");
     _titleLabel.userInteractionEnabled = YES;
     [_titleLabel appendBottomBorder];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapFrom:)];
@@ -288,7 +288,7 @@
 //更多消息类型 点击
 - (void)bottomButtonPressed:(NSNumber *)obj{
     if (obj.intValue == VideoCallInputBottomButtonTypeImage) {
-        [UdeskAVCSUtil checkPermissionsOfAlbum:^(BOOL isOK) {
+        [UdeskAVSUtil checkPermissionsOfAlbum:^(BOOL isOK) {
             if (isOK) {
                 [self.imageSelectView show:YES];
             }
@@ -378,7 +378,7 @@
 
 - (void)scrollToPoperPosition{
     CGFloat h = 0;
-    for (ChatBaseLayout *layout in self.dataSource.messageArray) {
+    for (UAVSChatBaseLayout *layout in self.dataSource.messageArray) {
         h += layout.height;
     }
     if (h > self.chatTableView.height && [self.chatTableView numberOfRowsInSection:0]) {

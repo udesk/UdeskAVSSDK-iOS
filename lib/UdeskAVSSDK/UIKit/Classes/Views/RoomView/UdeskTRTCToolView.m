@@ -7,6 +7,7 @@
 
 #import "UdeskTRTCToolView.h"
 #import "UdeskProjectHeader.h"
+#import "UdeskAVSMacroHeader.h"
 
 @interface  UdeskTRTCToolView()
 

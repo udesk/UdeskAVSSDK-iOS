@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = 'UdeskAVSSDK'
-  s.version      = '1.2.0'
+  s.version      = '1.3.0'
   s.license      = 'MIT'
   s.summary      = 'lib.'
   s.description  = <<-DESC

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UdeskRoomViewController : UIViewController
 
+@property (nonatomic, strong, readonly)NSString *channelId;
+
 - (instancetype)initWithRoom:(NSDictionary *)info;
 
 - (void)updateAgentInfo:(UdeskAVSAgentInfo *)agent;
@@ -22,11 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)reloadMessageTableView;
 
-- (void)hangup:(NSDictionary *)info;
-
 - (void)sendBye;
-
-- (void)exitRoom;
 
 @end
 

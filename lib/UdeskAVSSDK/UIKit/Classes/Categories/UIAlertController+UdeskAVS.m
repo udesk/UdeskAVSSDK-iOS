@@ -6,6 +6,7 @@
 //
 
 #import "UIAlertController+UdeskAVS.h"
+#import "UdeskAVSBundleUtils.h"
 
 @implementation UIAlertController (UdeskAVS)
 
@@ -16,7 +17,7 @@
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *conform = [UIAlertAction actionWithTitle:getUDAVSLocalizedString(@"uavs_common_sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (completion) {
             completion();
         }
@@ -34,14 +35,14 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:nil
                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *conform = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *conform = [UIAlertAction actionWithTitle:getUDAVSLocalizedString(@"uavs_common_sure") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (completion) {
             completion(0);
         }
         }];
     [alert addAction:conform];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:getUDAVSLocalizedString(@"uavs_common_cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         if (completion) {
             completion(1);
         }
